@@ -40,8 +40,9 @@ def is_dialogue(curr_line, next_line):
 	return True
 
 
-# Returns list of scenes
-def format_script(url = "http://www.imsdb.com/scripts/Revenant,-The.html"):
+# Returns list of list of tups: scenes --> lines --> (text, type)
+# Each line in a scene is annotated with a type, 
+# e.g. scene heading, dialogue, character name, action, transitiondef format_script(url = "http://www.imsdb.com/scripts/Revenant,-The.html"):
 	page = urllib2.urlopen(url)
 	soup = BeautifulSoup(page, "lxml")
 	scr = soup.find_all('td', attrs = {"class": "scrtext"})[0].get_text()
