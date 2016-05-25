@@ -45,7 +45,10 @@ def is_dialogue(curr_line, next_line):
 # e.g. scene heading, dialogue, character name, action, transition
 def format_script(filename = None, url = "http://www.imsdb.com/scripts/Revenant,-The.html"):
 	if filename is not None:
-		f = open(filename, "r")
+		try:
+			f = open(filename, "r")
+		except:
+			return None
 		scr = f.read()
 		scr_lines = [s.strip() for s in scr.splitlines()]
 	else:

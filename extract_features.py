@@ -22,9 +22,12 @@ print genre_dict
 # tf-idf code
 all_genres = ["Action", "Adventure", "Animation", "Comedy", "Crime", "Drama", "Family", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Short", "Thriller", "War"]
 
-def extract_features(movie_name, file_name):
+def extract_features(file_name, movie_name):
 	## aggregate all dialogue, action
 	scenes = format_script(file_name)
+
+	if scenes is None:
+		return None
 
 	all_lines = [line[0]  for scene in scenes for line in scene if line[1] == 'dialogue']
 	all_text = ' '.join(all_lines)
@@ -32,18 +35,24 @@ def extract_features(movie_name, file_name):
 	all_action = [line[0]  for scene in scenes for line in scene if line[1] == 'action']
 	all_action_text = ' '.join(all_action)
 
-	dialogue_scores = (textstat.flesch_reading_ease(all_text), textstat.flesch_kincaid_grade(all_text), textstat.automated_readability_index(all_text))
-	action_scores = (textstat.flesch_reading_ease(all_action_text), textstat.flesch_kincaid_grade(all_action_text), textstat.automated_readability_index(all_action_text))
-
+	if len(all_text) > 0:
+		dialogue_scores = (textstat.flesch_reading_ease(all_text), textstat.flesch_kincaid_grade(all_text), textstat.automated_readability_index(all_text))
+	else:
+		dialogue_scores = (0,0,0)
+	if len(all_action_text) > 0:
+		action_scores = (textstat.flesch_reading_ease(all_action_text), textstat.flesch_kincaid_grade(all_action_text), textstat.automated_readability_index(all_action_text))
+	else:
+		action_scores = (0,0,0)
 	## reading scores for dialogue/action
 	print dialogue_scores
 	print action_scores
 
-	print genre_dict[movie_name]
 	genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
-	print genre_features
 
-extract_features("Revenant, The")
+	final_features = dialogue_scores + action_scores + tuple(genre_features)
+	return final_features
+
+#extract_features("Revenant, The")
 
 #extract_features('')
 
