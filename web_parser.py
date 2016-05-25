@@ -50,7 +50,7 @@ with open('imsdb_ratings.csv', 'wb') as csvfile:
 			else:
 				return "N/A"
 
-		spamwriter.writerow((movie_name, get_elem('imdbRating'), get_elem('Metascore'), get_elem('tomatoRating'), get_elem('tomatoReviews'), get_elem('tomatoFresh'), get_elem('tomatoRotten'), get_elem('tomatoUserMeter'), get_elem('tomatoUserRating')))
+		spamwriter.writerow((movie_name, get_elem("Genre"), get_elem('imdbRating'), get_elem('Metascore'), get_elem('tomatoRating'), get_elem('tomatoReviews'), get_elem('tomatoFresh'), get_elem('tomatoRotten'), get_elem('tomatoUserMeter'), get_elem('tomatoUserRating')))
 
 
 
