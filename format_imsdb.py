@@ -44,15 +44,15 @@ def is_dialogue(curr_line, next_line):
 # Each line in a scene is annotated with a type, 
 # e.g. scene heading, dialogue, character name, action, transition
 def format_script(filename = None, url = "http://www.imsdb.com/scripts/Revenant,-The.html"):
-if filename is not None:
-	f = open(filename, "r")
-	scr = f.read()
-	scr_lines = [s.strip() for s in scr.splitlines()]
-else:
-	page = urllib2.urlopen(url)
-	soup = BeautifulSoup(page, "lxml")
-	scr = soup.find_all('td', attrs = {"class": "scrtext"})[0].get_text()
-	scr_lines = [s.strip() for s in scr.splitlines()]
+	if filename is not None:
+		f = open(filename, "r")
+		scr = f.read()
+		scr_lines = [s.strip() for s in scr.splitlines()]
+	else:
+		page = urllib2.urlopen(url)
+		soup = BeautifulSoup(page, "lxml")
+		scr = soup.find_all('td', attrs = {"class": "scrtext"})[0].get_text()
+		scr_lines = [s.strip() for s in scr.splitlines()]
 	idx = 0
 	start = False # skips title, writer, etc.
 	first_scene = True # for case that screenplay opens with transition
