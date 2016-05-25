@@ -43,7 +43,12 @@ def is_dialogue(curr_line, next_line):
 # Returns list of list of tups: scenes --> lines --> (text, type)
 # Each line in a scene is annotated with a type, 
 # e.g. scene heading, dialogue, character name, action, transition
-def format_script(url = "http://www.imsdb.com/scripts/Revenant,-The.html"):
+def format_script(filename = None, url = "http://www.imsdb.com/scripts/Revenant,-The.html"):
+if filename is not None:
+	f = open(filename, "r")
+	scr = f.read()
+	scr_lines = [s.strip() for s in scr.splitlines()]
+else:
 	page = urllib2.urlopen(url)
 	soup = BeautifulSoup(page, "lxml")
 	scr = soup.find_all('td', attrs = {"class": "scrtext"})[0].get_text()
@@ -70,7 +75,7 @@ def format_script(url = "http://www.imsdb.com/scripts/Revenant,-The.html"):
 		elif curr_line in transitions:
 			formatted_lines.append((curr_line, "transition"))
 			start = True
-		elif page_number_regex.search(curr_line) is not None:
+		elif page_number_regex.search(curr_line) is not None and len(curr_line.split()) == 1:
 			formatted_lines.append((curr_line, "page number"))
 		elif is_scene_heading(curr_line):
 			if not first_scene:
@@ -79,6 +84,8 @@ def format_script(url = "http://www.imsdb.com/scripts/Revenant,-The.html"):
 				formatted_lines.append((curr_line, "scene heading"))
 			else: 
 				first_scene = False
+				formatted_lines = []
+				formatted_lines.append((curr_line, "scene heading"))
 			start = True
 		elif idx + 1 < len(scr_lines) and is_dialogue(curr_line, scr_lines[idx+1]):
 			formatted_lines.append((curr_line, "character name"))
@@ -87,9 +94,8 @@ def format_script(url = "http://www.imsdb.com/scripts/Revenant,-The.html"):
 			curr_lines.append(curr_line)
 		idx += 1
 		if idx == len(scr_lines):
-			formatted_lines = formatted_lines[:len(formatted_lines)-2]
 			scenes.append(formatted_lines)
-	return scenes
+return scenes
 
 
 
