@@ -95,7 +95,7 @@ def format_script(filename = None, url = "http://www.imsdb.com/scripts/Revenant,
 		idx += 1
 		if idx == len(scr_lines):
 			scenes.append(formatted_lines)
-return scenes
+	return scenes
 
 
 
