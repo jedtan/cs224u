@@ -14,6 +14,14 @@ tomatoesGood = 8
 metascoreBad = 50
 metascoreGood = 80
 
+film_file = "films.txt"
+feat_file = "feats.txt"
+qual_file = "qual.txt"
+
+film_list_file = open(film_file, 'w')
+feat_list_file = open(feat_file, 'w')
+qual_list_file = open(qual_file, 'w')
+
 film_list = []
 feat_list = [] 
 qual_list = []
@@ -52,6 +60,11 @@ with open('imsdb_ratings.csv', 'rb') as csvfile:
 
 
 #sample classifier
+	for i, item in enumerate(film_list):
+  		film_list_file.write("%s\n" % item)
+  		feat_list_file.write("%s\n" % ', '.join([str(feature) for feature in feat_list[i]]))
+  		qual_list_file.write("%s\n" % qual_list[i])
+
 
 	classifier = naive_bayes.GaussianNB()
 	model = classifier.fit(feat_list, qual_list)

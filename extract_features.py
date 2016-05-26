@@ -4,6 +4,12 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from textstat.textstat import textstat
 import csv
 
+bad_action = "bad_action.txt"
+bad_dialogue = "bad_dialogue.txt"
+
+badA = open(bad_action, 'w')
+badD = open(bad_dialogue, 'w') 
+
 genre_dict = {}
 with open('imsdb_ratings.csv', 'rb') as csvfile:
 	spamreader = csv.reader(csvfile)
@@ -38,10 +44,13 @@ def extract_features(file_name, movie_name):
 	if len(all_text) > 0:
 		dialogue_scores = (textstat.flesch_reading_ease(all_text), textstat.flesch_kincaid_grade(all_text), textstat.automated_readability_index(all_text))
 	else:
+		badD.write(movie_name + "\n")
 		dialogue_scores = (0,0,0)
+
 	if len(all_action_text) > 0:
 		action_scores = (textstat.flesch_reading_ease(all_action_text), textstat.flesch_kincaid_grade(all_action_text), textstat.automated_readability_index(all_action_text))
 	else:
+		badA.write(movie_name + "\n")
 		action_scores = (0,0,0)
 	## reading scores for dialogue/action
 	print dialogue_scores
