@@ -3,6 +3,23 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from textstat.textstat import textstat
 import csv
+from operator import itemgetter
+from collections import Counter
+import re
+
+def general_inquirer_to_dict():
+	#feature_names = ["Positiv", "Negativ", "Active", "Passive", "Object"]
+	inquirer_dict = {}
+	count = 0
+	with open("harvard_general_inquirer.txt", 'r') as f:
+		reader = csv.reader(f, delimiter='\t')
+		header = reader.next()
+		#indices = [header.index(name) for name in feature_names]
+		for row in reader:
+			#inquirer_dict[row[0].lower()] = itemgetter(*indices)(row)
+			#header.index("Defined") # remove definition
+			inquirer_dict[row[0].lower()] = [elem for elem in row[2:185] if elem != '']
+	return inquirer_dict
 
 genre_dict = {}
 with open('imsdb_ratings.csv', 'rb') as csvfile:
@@ -29,7 +46,7 @@ def extract_features(file_name, movie_name):
 	if scenes is None:
 		return None
 
-	all_lines = [line[0]  for scene in scenes for line in scene if line[1] == 'dialogue']
+	all_lines = [re.sub(r'\([^)]*\)', '', line[0]) for scene in scenes for line in scene if line[1] == 'dialogue']
 	all_text = ' '.join(all_lines)
 
 	all_action = [line[0]  for scene in scenes for line in scene if line[1] == 'action']
@@ -49,8 +66,23 @@ def extract_features(file_name, movie_name):
 
 	genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
 
+	# Harvard General Inquirer
+	inquirer_dict = general_inquirer_to_dict()
+	word_list = all_text.split()
+	word_counter = Counter(word_list)
+	hgi_feature_dict = {}
+	for word in word_counter:
+		if word in inquirer_dict:
+			for feature in inquirer_dict[word]:
+				if feature not in hgi_feature_dict:
+					hgi_feature_dict[feature] = word_counter[word]
+				else:
+					hgi_feature_dict[feature] += word_counter[word]
+	for feature in hgi_feature_dict:
+		hgi_feature_dict[feature] = float(hgi_feature_dict[feature])/len(word_list)
+
 	final_features = dialogue_scores + action_scores + tuple(genre_features)
-	return final_features
+	return final_features, hgi_feature_dict
 
 #extract_features("Revenant, The")
 
