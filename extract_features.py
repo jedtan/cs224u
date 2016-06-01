@@ -45,6 +45,9 @@ with open('imsdb_ratings.csv', 'rb') as csvfile:
 
 #print genre_dict
 
+# amount of dialogue to action
+
+
 error_codes = ["'", 'E', 'T', 'D', 'Z']
 http = Http()
 
@@ -78,39 +81,33 @@ def general_inquirer_features(text):
 	for feature in hgi_feature_dict:
 		hgi_feature_dict[feature] = float(hgi_feature_dict[feature])/len(word_list)
 
-# change input to scenes
-def extract_features(file_name, movie_name):
-	## aggregate all dialogue, action
-	scenes = format_script(file_name)
-
-	if scenes is None:
+def extract_features(chunk):
+	if chunk is None:
 		return None
+	dialogue_list = [re.sub(r'\([^)]*\)', '', line[0]) for line in chunk if line[1] == 'dialogue']
 
-	all_lines = [re.sub(r'\([^)]*\)', '', line[0]) for scene in scenes for line in scene if line[1] == 'dialogue']
-	all_text = ' '.join(all_lines)
+	all_dialogue = ' '.join(dialogue_list)
+	#print all_dialogue
+	action_list = [line[0] for line in chunk if line[1] == 'action']
+	all_action = ' '.join(action_list)
+	dialogue_features = extract_features_sub(all_dialogue)
+	action_features = extract_features_sub(all_action)
+	return dialogue_features + action_features
+	#genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
 
-	all_action = [line[0]  for scene in scenes for line in scene if line[1] == 'action']
-	all_action_text = ' '.join(all_action)
 
-	if len(all_text) > 0:
-		dialogue_scores = [textstat.flesch_reading_ease(all_text), textstat.flesch_kincaid_grade(all_text), textstat.automated_readability_index(all_text)]
+
+# change input to scenes
+def extract_features_sub(text):
+	## aggregate all dialogue, action
+	#scenes = format_script(file_name)
+	if len(text) > 0:
+		language_complexity = [textstat.flesch_reading_ease(text), textstat.flesch_kincaid_grade(text), textstat.automated_readability_index(text)]
 	else:
-		badD.write(movie_name + "\n")
-		dialogue_scores = [0,0,0]
-
-	if len(all_action_text) > 0:
-		action_scores = [textstat.flesch_reading_ease(all_action_text), textstat.flesch_kincaid_grade(all_action_text), textstat.automated_readability_index(all_action_text)]
-	else:
-		badA.write(movie_name + "\n")
-		action_scores = [0,0,0]
-	## reading scores for dialogue/action
-	print dialogue_scores
-	print action_scores
-
-	genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
-	lexical_diversity = [find_lex_d(all_text)]
-
-	final_features = dialogue_scores + action_scores + genre_features + lexical_diversity
+		#badD.write(movie_name + "\n")
+		language_complexity = [0,0,0]
+	lexical_diversity = [find_lex_d(text)]
+	final_features = language_complexity + lexical_diversity
 	return final_features
 # for each group of features, we return a tup
 #extract_features("Revenant, The")

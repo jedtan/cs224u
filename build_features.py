@@ -101,7 +101,6 @@ def get_status(row):
 def get_summary_features(scenes):
 	num_scenes = len(scenes)
 
-
 # scaling data
 # 25th hour?
 
@@ -124,14 +123,13 @@ def build_features(scale_features = False):
 				chunks = script_to_n_chunks(scenes)
 				features = []
 				for chunk in chunks:
+					print chunk
 				# change input parameter to scenes for extract features
-					chunk_features = extract_features(file_name, row[0])
+					chunk_features = extract_features(chunk)
 					features = features + chunk_features
-
 				# Full script features
 				script_summary_features = []
 				num_scenes = len(scenes)
-
 				feat_list.append(features)
 				if get_status(row) == "Good":
 					qual_list.append(1)
