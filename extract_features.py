@@ -2,6 +2,9 @@ from format_imsdb import format_script
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from textstat.textstat import textstat
+from httplib2 import Http
+from urllib import urlencode
+from xml.etree.ElementTree import fromstring
 import csv
 from operator import itemgetter
 from collections import Counter
@@ -39,13 +42,28 @@ with open('imsdb_ratings.csv', 'rb') as csvfile:
 
 		genre_dict[row[0]] = row_list
 
-print genre_dict
+#print genre_dict
+
+error_codes = ["'", 'E', 'T', 'D', 'Z']
+http = Http()
+
+def find_lex_d(text):
+    data = {'input': text}
+    response, content = http.request("http://lex-d.herokuapp.com", "POST", urlencode(data))
+    if response['status'] != 200:
+        if str(content)[2] in error_codes:
+            print(content)                    # print error message if error
+        else:
+            return float(content)  # print Lexical diversity score
+    else:
+        print('Error 200 thrown from server')
 
 
 # tf-idf code
 all_genres = ["Action", "Adventure", "Animation", "Comedy", "Crime", "Drama", "Family", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Short", "Thriller", "War"]
 
 def extract_features(file_name, movie_name):
+	print "hi"
 	## aggregate all dialogue, action
 	scenes = format_script(file_name)
 
@@ -75,6 +93,7 @@ def extract_features(file_name, movie_name):
 
 	genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
 
+	lexical_diversity = [find_lex_d(all_text)]
 	# Harvard General Inquirer
 	inquirer_dict = general_inquirer_to_dict()
 	word_list = all_text.split()
@@ -90,12 +109,17 @@ def extract_features(file_name, movie_name):
 	for feature in hgi_feature_dict:
 		hgi_feature_dict[feature] = float(hgi_feature_dict[feature])/len(word_list)
 
-	final_features = dialogue_scores + action_scores + tuple(genre_features)
+	final_features = dialogue_scores + action_scores + tuple(genre_features) + lexical_diversity
 	return final_features, hgi_feature_dict
 
 #extract_features("Revenant, The")
 
 #extract_features('')
+
+extract_features('imsdb_scripts/Revenant, The.txt', 'Revenant, The')
+
+
+
 
 
 
