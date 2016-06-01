@@ -3,7 +3,7 @@ import urllib2
 import re
 
 transitions = ["FADE IN:", "FADE OUT:", "CUT TO:", "MATCH CUT:", "MONTAGE:", "INSERT:", "INTERCUT:", "SERIES OF SHOTS:", "DISSOLVE TO:", "BACK TO SCENE:"]
-scene_headings = ["INT.", "EXT.", "INT/EXT.", "INT", "EXT"]
+scene_headings = ["INT.", "EXT.", "INT/EXT.", "INT", "EXT", "INTERIOR", "EXTERIOR"]
 #character_name_parentheticals = ["(CONT'D)", "(V.O.)", "(O.S.)"]
 # There are cases with no period after scene heading. 
 #url = "http://www.imsdb.com/scripts/Revenant,-The.html"
@@ -25,18 +25,27 @@ def is_scene_heading(line):
 			return True
 	return False
 
+# ''.join(e for e in string if e.isalnum())
+
 def is_dialogue(curr_line, next_line):
 	curr_line_split = curr_line.split()
 	next_line_split = next_line.split()
 	if len(curr_line_split) == 0 or len(next_line_split) == 0:
 		return False
-	if len(curr_line_split) > 2:
-		return False
+	# There are characters with multiple word names
+	#if len(curr_line_split) > 2:
+	#	return False
+	if (curr_line_split[-1].startswith('(') and curr_line_split[-1].endswith(')')):
+		name = ''.join(elem for word in curr_line_split[:-1] for elem in word if elem.isalnum())
+	else:
+		name = ''.join(elem for word in curr_line_split for elem in word if elem.isalnum())
 	# includes character cue
-	if len(curr_line_split) == 2 and not (curr_line_split[1].startswith('(') and curr_line_split[1].endswith(')')):#curr_line_split[1] != "(CONT'D)":
+	if not name.isupper():
 		return False
-	if not curr_line_split[0].isalpha():
-		return False
+	#if name.isupper() and not (curr_line_split[-1].startswith('(') and curr_line_split[-1].endswith(')')):#curr_line_split[1] != "(CONT'D)":
+	#	return False
+	#if not curr_line_split[0].isalpha():
+	#	return False
 	return True
 
 

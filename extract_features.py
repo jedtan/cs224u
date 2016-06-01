@@ -5,6 +5,7 @@ from textstat.textstat import textstat
 from httplib2 import Http
 from urllib import urlencode
 from xml.etree.ElementTree import fromstring
+from nltk.corpus import sentiwordnet as swn
 import csv
 from operator import itemgetter
 from collections import Counter
@@ -62,6 +63,22 @@ def find_lex_d(text):
     else:
         print('Error 200 thrown from server')
 
+def extract_senti_wordnet(text):
+	#pos_score = 0
+	#neg_score = 0
+	overall_score = 0
+	for word in text:
+		synsets = swn.senti_synsets(word.decode('utf-8', 'ignore'))
+		for synonym in list(synsets):
+			#print synonym.pos_score
+			#pos_score += synonym.pos_score()
+			#neg_score += synonym.neg_score()
+			overall_score += (synonym.pos_score() - synonym.neg_score())
+	overall_score /= len(text)
+	#neg_score /= len(text)
+	return [overall_score]
+
+
 
 # tf-idf code
 all_genres = ["Action", "Adventure", "Animation", "Comedy", "Crime", "Drama", "Family", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Short", "Thriller", "War"]
@@ -107,8 +124,11 @@ def extract_features_sub(text):
 		#badD.write(movie_name + "\n")
 		language_complexity = [0,0,0]
 	lexical_diversity = [find_lex_d(text)]
-	final_features = language_complexity + lexical_diversity
+	sentiment = extract_senti_wordnet(text)
+	print sentiment
+	final_features = language_complexity + lexical_diversity + sentiment
 	return final_features
+
 # for each group of features, we return a tup
 #extract_features("Revenant, The")
 

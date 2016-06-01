@@ -108,9 +108,13 @@ def build_features(scale_features = False):
 	film_list = []
 	feat_list = [] 
 	qual_list = []
+	count = 0
 	with open('imsdb_ratings.csv', 'rb') as csvfile:
 		reader = csv.reader(csvfile)
 		for row in reader:
+			count += 1
+			if count == 10:
+				break
 			if get_status(row) == "Good" or get_status(row) == "Bad":
 				file_name = file_base + row[0] + ".txt"
 				print file_name
@@ -123,7 +127,6 @@ def build_features(scale_features = False):
 				chunks = script_to_n_chunks(scenes)
 				features = []
 				for chunk in chunks:
-					print chunk
 				# change input parameter to scenes for extract features
 					chunk_features = extract_features(chunk)
 					features = features + chunk_features
