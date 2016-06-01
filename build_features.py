@@ -98,8 +98,29 @@ def get_status(row):
 		else:
 			return "Neutral"
 
+def get_genre_dict():
+	genre_dict = {}
+	with open('imsdb_ratings.csv', 'rb') as csvfile:
+		spamreader = csv.reader(csvfile)
+		for row in spamreader:
+			if "," in row[1]:
+				row[1] = row[1].replace("\"","")
+				row_list = row[1].split(", ")
+			else:
+				row_list = [row[1]]
+			genre_dict[row[0]] = row_list
+	return genre_dict
+
+
+
 def get_summary_features(scenes):
+	summary_features = []
+	genre_dict = get_genre_dict()
+	all_genres = ["Action", "Adventure", "Animation", "Comedy", "Crime", "Drama", "Family", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Short", "Thriller", "War"]
+	genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
+	summary_features.extend(genre_features)
 	num_scenes = len(scenes)
+
 
 # scaling data
 # 25th hour?

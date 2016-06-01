@@ -10,6 +10,7 @@ import csv
 from operator import itemgetter
 from collections import Counter
 import re
+import numpy as np
 
 def general_inquirer_to_dict():
 	#feature_names = ["Positiv", "Negativ", "Active", "Passive", "Object"]
@@ -98,18 +99,30 @@ def general_inquirer_features(text):
 	for feature in hgi_feature_dict:
 		hgi_feature_dict[feature] = float(hgi_feature_dict[feature])/len(word_list)
 
+# amount of dialogue, action, dialogue to action
+def dialogue_action_length_features(dialogue_list, action_list):
+	dialogue_to_action = len(dialogue_list)/float(len(action_list))
+	dialogue_lens = [len(line.split()) for line in dialogue_list]
+	action_lens = [len(line.split()) for line in action_list]
+	dialogue_len_mean = np.mean(dialogue_lens)
+	dialogue_len_std = np.std(dialogue_lens)
+	action_len_mean = np.mean(action_lens)
+	action_len_std = np.std(action_lens)
+	return [dialogue_to_action,dialogue_len_mean,dialogue_len_std,action_len_mean,action_len_std]
+
+
 def extract_features(chunk):
 	if chunk is None:
 		return None
 	dialogue_list = [re.sub(r'\([^)]*\)', '', line[0]) for line in chunk if line[1] == 'dialogue']
-
 	all_dialogue = ' '.join(dialogue_list)
 	#print all_dialogue
 	action_list = [line[0] for line in chunk if line[1] == 'action']
 	all_action = ' '.join(action_list)
 	dialogue_features = extract_features_sub(all_dialogue)
 	action_features = extract_features_sub(all_action)
-	return dialogue_features + action_features
+	chunk_summary_features = dialogue_action_length_features(dialogue_list, action_list)
+	return dialogue_features + action_features +  chunk_summary_features
 	#genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
 
 
