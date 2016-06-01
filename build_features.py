@@ -51,6 +51,12 @@ with open('imsdb_ratings.csv', 'rb') as csvfile:
 	for row in reader:
 		if get_status(row) == "Good" or get_status(row) == "Bad":
 			file_name = file_base + row[0] + ".txt"
-			features, hgi_features = extract_features(file_name, row[0])
-
+			scenes = format_script(file_name)
+			chunks = script_to_n_chunks(scenes)
+			features = ()
+			for chunk in chunks:
+			# change input parameter to scenes for extract features
+				chunk_features = extract_features(file_name, row[0])
+				features + chunk_features
+			
 
