@@ -32,6 +32,7 @@ badA = open(bad_action, 'w')
 badD = open(bad_dialogue, 'w') 
 
 genre_dict = {}
+
 with open('imsdb_ratings.csv', 'rb') as csvfile:
 	spamreader = csv.reader(csvfile)
 	for row in spamreader:
@@ -77,8 +78,23 @@ def extract_senti_wordnet(text):
 # tf-idf code
 all_genres = ["Action", "Adventure", "Animation", "Comedy", "Crime", "Drama", "Family", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Short", "Thriller", "War"]
 
+def general_inquirer_features(text):
+	inquirer_dict = general_inquirer_to_dict()
+	word_list = text.split()
+	word_counter = Counter(word_list)
+	hgi_feature_dict = {}
+	for word in word_counter:
+		if word in inquirer_dict:
+			for feature in inquirer_dict[word]:
+				if feature not in hgi_feature_dict:
+					hgi_feature_dict[feature] = word_counter[word]
+				else:
+					hgi_feature_dict[feature] += word_counter[word]
+	for feature in hgi_feature_dict:
+		hgi_feature_dict[feature] = float(hgi_feature_dict[feature])/len(word_list)
+
+# change input to scenes
 def extract_features(file_name, movie_name):
-	print "hi"
 	## aggregate all dialogue, action
 	scenes = format_script(file_name)
 
@@ -92,21 +108,22 @@ def extract_features(file_name, movie_name):
 	all_action_text = ' '.join(all_action)
 
 	if len(all_text) > 0:
-		dialogue_scores = (textstat.flesch_reading_ease(all_text), textstat.flesch_kincaid_grade(all_text), textstat.automated_readability_index(all_text))
+		dialogue_scores = [textstat.flesch_reading_ease(all_text), textstat.flesch_kincaid_grade(all_text), textstat.automated_readability_index(all_text)]
 	else:
 		badD.write(movie_name + "\n")
-		dialogue_scores = (0,0,0)
+		dialogue_scores = [0,0,0]
 
 	if len(all_action_text) > 0:
-		action_scores = (textstat.flesch_reading_ease(all_action_text), textstat.flesch_kincaid_grade(all_action_text), textstat.automated_readability_index(all_action_text))
+		action_scores = [textstat.flesch_reading_ease(all_action_text), textstat.flesch_kincaid_grade(all_action_text), textstat.automated_readability_index(all_action_text)]
 	else:
 		badA.write(movie_name + "\n")
-		action_scores = (0,0,0)
+		action_scores = [0,0,0]
 	## reading scores for dialogue/action
 	print dialogue_scores
 	print action_scores
 
 	genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
+<<<<<<< HEAD
 
 	lexical_diversity = tuple([find_lex_d(all_text)])
 
@@ -128,13 +145,15 @@ def extract_features(file_name, movie_name):
 		hgi_feature_dict[feature] = float(hgi_feature_dict[feature])/len(word_list)
 
 	final_features = dialogue_scores + action_scores + tuple(genre_features) + lexical_diversity
+	lexical_diversity = [find_lex_d(all_text)]
 	return final_features, hgi_feature_dict
 
+# for each group of features, we return a tup
 #extract_features("Revenant, The")
 
 #extract_features('')
 
-extract_features('imsdb_scripts/Revenant, The.txt', 'Revenant, The')
+#extract_features('imsdb_scripts/Revenant, The.txt', 'Revenant, The')
 
 
 

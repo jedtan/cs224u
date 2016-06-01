@@ -3,7 +3,7 @@ import urllib2
 import re
 
 transitions = ["FADE IN:", "FADE OUT:", "CUT TO:", "MATCH CUT:", "MONTAGE:", "INSERT:", "INTERCUT:", "SERIES OF SHOTS:", "DISSOLVE TO:", "BACK TO SCENE:"]
-scene_headings = ["INT.", "EXT.", "INT/EXT."]
+scene_headings = ["INT.", "EXT.", "INT/EXT.", "INT", "EXT"]
 #character_name_parentheticals = ["(CONT'D)", "(V.O.)", "(O.S.)"]
 # There are cases with no period after scene heading. 
 #url = "http://www.imsdb.com/scripts/Revenant,-The.html"
@@ -66,7 +66,7 @@ def format_script(filename = None, url = "http://www.imsdb.com/scripts/Revenant,
 	dialogue = False # flag for dialogue, triggered by character name
 	while idx < len(scr_lines):
 		curr_line = scr_lines[idx]
-		if curr_line == u'':
+		if curr_line == '':
 			if len(curr_lines) > 0:
 				if dialogue:
 					formatted_lines.append((' '.join(curr_lines), "dialogue"))

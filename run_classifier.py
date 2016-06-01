@@ -49,7 +49,6 @@ def get_status(row):
 			return "Neutral"
 
 list_of_hgi_features_dicts = []
-counter = 0
 with open('imsdb_ratings.csv', 'rb') as csvfile:
 	spamreader = csv.reader(csvfile)
 	for row in spamreader:
@@ -58,18 +57,19 @@ with open('imsdb_ratings.csv', 'rb') as csvfile:
 			file_name = file_base + row[0] + ".txt"
 			print file_name
 			features, hgi_features = extract_features(file_name, row[0])
-			list_of_hgi_features_dicts.append(hgi_features)
 			if features is not None:
 				feat_list.append(features)
 				film_list.append(row[0])
-				qual_list.append(get_status(row))
-		counter += 1
-		if counter == 10:
-			break
+				list_of_hgi_features_dicts.append(hgi_features)
+				if get_status(row) == "Good":
+					qual_list.append(1)
+				else:
+					qual_list.append(0)
 
-vectorizer = DictVectorizer()
-hgi_feat_list = vectorizer.fit_transform(list_of_hgi_features_dicts).toarray()
-hgi_feat_list = preprocessing.scale(hgi_feat_list)
+
+#vectorizer = DictVectorizer()
+#hgi_feat_list = vectorizer.fit_transform(list_of_hgi_features_dicts).toarray()
+#hgi_feat_list = preprocessing.scale(hgi_feat_list)
 
 for idx, row in enumerate(hgi_feat_list):
 	feat_list[idx] = feat_list[idx] + tuple(row)
@@ -90,6 +90,15 @@ for hgi_features_dict in list_of_hgi_features_dicts:
 		curr_hgi_features_dict[feature] = (hgi_features_dict[feature] - feature_mean)/feature_std
 	list_of_hgi_features_dicts_standardized.append(curr_hgi_features_dict)
 '''
+
+from sklearn.linear_model import LogisticRegression
+def fit_maxent_classifier(X, y):    
+    mod = LogisticRegression(fit_intercept=True)
+    mod.fit(X, y)
+    return mod
+
+fit_maxent_classifier(feat_list, qual_list)
+
 #sample classifier
 	for i, item in enumerate(film_list):
   		film_list_file.write("%s\n" % item)
