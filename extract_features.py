@@ -80,7 +80,6 @@ def general_inquirer_features(text):
 
 # change input to scenes
 def extract_features(file_name, movie_name):
-	print "hi"
 	## aggregate all dialogue, action
 	scenes = format_script(file_name)
 

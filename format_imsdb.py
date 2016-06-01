@@ -3,7 +3,7 @@ import urllib2
 import re
 
 transitions = ["FADE IN:", "FADE OUT:", "CUT TO:", "MATCH CUT:", "MONTAGE:", "INSERT:", "INTERCUT:", "SERIES OF SHOTS:", "DISSOLVE TO:", "BACK TO SCENE:"]
-scene_headings = ["INT.", "EXT.", "INT/EXT."]
+scene_headings = ["INT.", "EXT.", "INT/EXT.", "INT", "EXT"]
 #character_name_parentheticals = ["(CONT'D)", "(V.O.)", "(O.S.)"]
 # There are cases with no period after scene heading. 
 #url = "http://www.imsdb.com/scripts/Revenant,-The.html"
