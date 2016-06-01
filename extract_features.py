@@ -62,8 +62,22 @@ def find_lex_d(text):
 # tf-idf code
 all_genres = ["Action", "Adventure", "Animation", "Comedy", "Crime", "Drama", "Family", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Short", "Thriller", "War"]
 
+def general_inquirer_features(text):
+	inquirer_dict = general_inquirer_to_dict()
+	word_list = text.split()
+	word_counter = Counter(word_list)
+	hgi_feature_dict = {}
+	for word in word_counter:
+	if word in inquirer_dict:
+		for feature in inquirer_dict[word]:
+			if feature not in hgi_feature_dict:
+				hgi_feature_dict[feature] = word_counter[word]
+			else:
+				hgi_feature_dict[feature] += word_counter[word]
+	for feature in hgi_feature_dict:
+	hgi_feature_dict[feature] = float(hgi_feature_dict[feature])/len(word_list)
 
-# dictionary features so more convenient to standardise post processing
+# change input to scenes
 def extract_features(file_name, movie_name):
 	print "hi"
 	## aggregate all dialogue, action
@@ -79,16 +93,16 @@ def extract_features(file_name, movie_name):
 	all_action_text = ' '.join(all_action)
 
 	if len(all_text) > 0:
-		dialogue_scores = (textstat.flesch_reading_ease(all_text), textstat.flesch_kincaid_grade(all_text), textstat.automated_readability_index(all_text))
+		dialogue_scores = [textstat.flesch_reading_ease(all_text), textstat.flesch_kincaid_grade(all_text), textstat.automated_readability_index(all_text)]
 	else:
 		badD.write(movie_name + "\n")
-		dialogue_scores = (0,0,0)
+		dialogue_scores = [0,0,0]
 
 	if len(all_action_text) > 0:
-		action_scores = (textstat.flesch_reading_ease(all_action_text), textstat.flesch_kincaid_grade(all_action_text), textstat.automated_readability_index(all_action_text))
+		action_scores = [textstat.flesch_reading_ease(all_action_text), textstat.flesch_kincaid_grade(all_action_text), textstat.automated_readability_index(all_action_text)]
 	else:
 		badA.write(movie_name + "\n")
-		action_scores = (0,0,0)
+		action_scores = [0,0,0]
 	## reading scores for dialogue/action
 	print dialogue_scores
 	print action_scores
@@ -97,25 +111,8 @@ def extract_features(file_name, movie_name):
 
 	lexical_diversity = [find_lex_d(all_text)]
 
-	# CREATE SEPARATE FUNCTION FOR GENERAL INQUIRER
-	# Harvard General Inquirer
-	inquirer_dict = general_inquirer_to_dict()
-	word_list = all_text.split()
-	word_counter = Counter(word_list)
-	hgi_feature_dict = {}
-	for word in word_counter:
-		if word in inquirer_dict:
-			for feature in inquirer_dict[word]:
-				if feature not in hgi_feature_dict:
-					hgi_feature_dict[feature] = word_counter[word]
-				else:
-					hgi_feature_dict[feature] += word_counter[word]
-	for feature in hgi_feature_dict:
-		hgi_feature_dict[feature] = float(hgi_feature_dict[feature])/len(word_list)
-	vectorizer = DictVectorizer()
-	hgi_feat_list = vectorizer.fit_transform(list_of_hgi_features_dicts).toarray()
 	final_features = dialogue_scores + action_scores + tuple(genre_features) + lexical_diversity
-	return final_features, hgi_feature_dict
+	return final_features
 # for each group of features, we return a tup
 #extract_features("Revenant, The")
 

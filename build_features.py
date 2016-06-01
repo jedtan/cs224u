@@ -53,10 +53,10 @@ with open('imsdb_ratings.csv', 'rb') as csvfile:
 			file_name = file_base + row[0] + ".txt"
 			scenes = format_script(file_name)
 			chunks = script_to_n_chunks(scenes)
-			features = ()
+			features = []
 			for chunk in chunks:
 			# change input parameter to scenes for extract features
 				chunk_features = extract_features(file_name, row[0])
 				features + chunk_features
-			
+
 
