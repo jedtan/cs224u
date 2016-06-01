@@ -66,7 +66,7 @@ def format_script(filename = None, url = "http://www.imsdb.com/scripts/Revenant,
 	dialogue = False # flag for dialogue, triggered by character name
 	while idx < len(scr_lines):
 		curr_line = scr_lines[idx]
-		if curr_line == u'':
+		if curr_line == '':
 			if len(curr_lines) > 0:
 				if dialogue:
 					formatted_lines.append((' '.join(curr_lines), "dialogue"))
