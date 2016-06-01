@@ -5,6 +5,7 @@ from textstat.textstat import textstat
 from httplib2 import Http
 from urllib import urlencode
 from xml.etree.ElementTree import fromstring
+from nltk.corpus import sentiwordnet as swn
 import csv
 from operator import itemgetter
 from collections import Counter
@@ -58,6 +59,20 @@ def find_lex_d(text):
     else:
         print('Error 200 thrown from server')
 
+def extract_senti_wordnet(text):
+	pos_score = 0
+	neg_score = 0
+	for word in text:
+		synsets = swn.senti_synsets(word)
+		for synonym in list(synsets):
+			#print synonym.pos_score
+			pos_score += synonym.pos_score()
+			neg_score += synonym.neg_score()
+	pos_score /= len(text)
+	neg_score /= len(text)
+	return(pos_score, neg_score)
+
+
 
 # tf-idf code
 all_genres = ["Action", "Adventure", "Animation", "Comedy", "Crime", "Drama", "Family", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Short", "Thriller", "War"]
@@ -93,7 +108,10 @@ def extract_features(file_name, movie_name):
 
 	genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
 
-	lexical_diversity = [find_lex_d(all_text)]
+	lexical_diversity = tuple([find_lex_d(all_text)])
+
+	sentiment_scores = extract_senti_wordnet(all_text)
+	print sentiment_scores
 	# Harvard General Inquirer
 	inquirer_dict = general_inquirer_to_dict()
 	word_list = all_text.split()
