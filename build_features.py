@@ -1,11 +1,14 @@
 from format_imsdb import format_script
 import math
+from extract_features import extract_features
+
 file_base = "imsdb_scripts/"
 
 file_name = '{}{}'.format(file_base,"American Hustle.txt")
 
 
 scenes = format_script(file_name)
+
 
 # parameter to be tuned - segment length in number of minutes/pages
 
@@ -39,3 +42,15 @@ def script_to_n_chunks(scenes, num_segments = 4):
 	for chunk in temp:
 		chunks.append([event for page in chunk for event in page])
 	return chunks
+
+# Process data and build features. Scale features is next step
+
+# scaling data
+with open('imsdb_ratings.csv', 'rb') as csvfile:
+	reader = csv.reader(csvfile)
+	for row in reader:
+		if get_status(row) == "Good" or get_status(row) == "Bad":
+			file_name = file_base + row[0] + ".txt"
+			features, hgi_features = extract_features(file_name, row[0])
+
+

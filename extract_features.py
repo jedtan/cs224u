@@ -62,6 +62,8 @@ def find_lex_d(text):
 # tf-idf code
 all_genres = ["Action", "Adventure", "Animation", "Comedy", "Crime", "Drama", "Family", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Short", "Thriller", "War"]
 
+
+# dictionary features so more convenient to standardise post processing
 def extract_features(file_name, movie_name):
 	print "hi"
 	## aggregate all dialogue, action
@@ -94,6 +96,8 @@ def extract_features(file_name, movie_name):
 	genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
 
 	lexical_diversity = [find_lex_d(all_text)]
+
+	# CREATE SEPARATE FUNCTION FOR GENERAL INQUIRER
 	# Harvard General Inquirer
 	inquirer_dict = general_inquirer_to_dict()
 	word_list = all_text.split()
@@ -108,10 +112,11 @@ def extract_features(file_name, movie_name):
 					hgi_feature_dict[feature] += word_counter[word]
 	for feature in hgi_feature_dict:
 		hgi_feature_dict[feature] = float(hgi_feature_dict[feature])/len(word_list)
-
+	vectorizer = DictVectorizer()
+	hgi_feat_list = vectorizer.fit_transform(list_of_hgi_features_dicts).toarray()
 	final_features = dialogue_scores + action_scores + tuple(genre_features) + lexical_diversity
 	return final_features, hgi_feature_dict
-
+# for each group of features, we return a tup
 #extract_features("Revenant, The")
 
 #extract_features('')
