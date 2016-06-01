@@ -67,9 +67,9 @@ with open('imsdb_ratings.csv', 'rb') as csvfile:
 					qual_list.append(0)
 
 
-vectorizer = DictVectorizer()
-hgi_feat_list = vectorizer.fit_transform(list_of_hgi_features_dicts).toarray()
-hgi_feat_list = preprocessing.scale(hgi_feat_list)
+#vectorizer = DictVectorizer()
+#hgi_feat_list = vectorizer.fit_transform(list_of_hgi_features_dicts).toarray()
+#hgi_feat_list = preprocessing.scale(hgi_feat_list)
 
 for idx, row in enumerate(hgi_feat_list):
 	feat_list[idx] = feat_list[idx] + tuple(row)

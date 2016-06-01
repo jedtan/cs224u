@@ -31,6 +31,7 @@ badA = open(bad_action, 'w')
 badD = open(bad_dialogue, 'w') 
 
 genre_dict = {}
+
 with open('imsdb_ratings.csv', 'rb') as csvfile:
 	spamreader = csv.reader(csvfile)
 	for row in spamreader:
@@ -68,14 +69,14 @@ def general_inquirer_features(text):
 	word_counter = Counter(word_list)
 	hgi_feature_dict = {}
 	for word in word_counter:
-	if word in inquirer_dict:
-		for feature in inquirer_dict[word]:
-			if feature not in hgi_feature_dict:
-				hgi_feature_dict[feature] = word_counter[word]
-			else:
-				hgi_feature_dict[feature] += word_counter[word]
+		if word in inquirer_dict:
+			for feature in inquirer_dict[word]:
+				if feature not in hgi_feature_dict:
+					hgi_feature_dict[feature] = word_counter[word]
+				else:
+					hgi_feature_dict[feature] += word_counter[word]
 	for feature in hgi_feature_dict:
-	hgi_feature_dict[feature] = float(hgi_feature_dict[feature])/len(word_list)
+		hgi_feature_dict[feature] = float(hgi_feature_dict[feature])/len(word_list)
 
 # change input to scenes
 def extract_features(file_name, movie_name):
@@ -108,17 +109,16 @@ def extract_features(file_name, movie_name):
 	print action_scores
 
 	genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
-
 	lexical_diversity = [find_lex_d(all_text)]
 
-	final_features = dialogue_scores + action_scores + tuple(genre_features) + lexical_diversity
+	final_features = dialogue_scores + action_scores + genre_features + lexical_diversity
 	return final_features
 # for each group of features, we return a tup
 #extract_features("Revenant, The")
 
 #extract_features('')
 
-extract_features('imsdb_scripts/Revenant, The.txt', 'Revenant, The')
+#extract_features('imsdb_scripts/Revenant, The.txt', 'Revenant, The')
 
 
 
