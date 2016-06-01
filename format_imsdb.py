@@ -74,7 +74,7 @@ def format_script(filename = None, url = "http://www.imsdb.com/scripts/Revenant,
 	page_number_regex = re.compile(r'\d\.')
 	dialogue = False # flag for dialogue, triggered by character name
 	while idx < len(scr_lines):
-		curr_line = scr_lines[idx]
+		curr_line = scr_lines[idx].decode('ascii','ignore')
 		if curr_line == '':
 			if len(curr_lines) > 0:
 				if dialogue:
