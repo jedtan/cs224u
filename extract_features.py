@@ -119,8 +119,8 @@ def extract_features(chunk):
 	#print all_dialogue
 	action_list = [line[0] for line in chunk if line[1] == 'action']
 	all_action = ' '.join(action_list)
-	dialogue_features = extract_features_sub(all_dialogue)
-	action_features = extract_features_sub(all_action)
+	dialogue_features = extract_features_sub(all_dialogue.lower())
+	action_features = extract_features_sub(all_action.lower())
 	chunk_summary_features = dialogue_action_length_features(dialogue_list, action_list)
 	return dialogue_features + action_features +  chunk_summary_features
 	#genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
