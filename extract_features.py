@@ -110,6 +110,15 @@ def dialogue_action_length_features(dialogue_list, action_list):
 	action_len_std = np.std(action_lens)
 	return [dialogue_to_action,dialogue_len_mean,dialogue_len_std,action_len_mean,action_len_std]
 
+# voice over and off screen
+def get_dialogue_type_features(chunk):
+	dialogue_list = [dialogue for dialogue in chunk if dialogue[1] == 'character name']
+	dialogue_type = [''.join(e for e in dialogue[2] if e.isalnum()).lower() for dialogue in dialogue_list]
+	proportion_vo = float(dialogue_type.count("vo"))/len(dialogue_type)
+	proportion_os = float(dialogue_type.count("os"))/len(dialogue_type)
+	#print proportion_vo
+	#print proportion_os
+	return [proportion_vo, proportion_os]
 
 def extract_features(chunk):
 	if chunk is None:
@@ -122,7 +131,8 @@ def extract_features(chunk):
 	dialogue_features = extract_features_sub(all_dialogue.lower())
 	action_features = extract_features_sub(all_action.lower())
 	chunk_summary_features = dialogue_action_length_features(dialogue_list, action_list)
-	return dialogue_features + action_features +  chunk_summary_features
+	dialogue_type_features = get_dialogue_type_features(chunk)
+	return dialogue_features + action_features +  chunk_summary_features + dialogue_type_features
 	#genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
 
 
@@ -138,7 +148,7 @@ def extract_features_sub(text):
 		language_complexity = [0,0,0]
 	lexical_diversity = [find_lex_d(text)]
 	sentiment = extract_senti_wordnet(text)
-	print sentiment
+	#print sentiment
 	final_features = language_complexity + lexical_diversity + sentiment
 	return final_features
 
