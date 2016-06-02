@@ -11,20 +11,8 @@ from operator import itemgetter
 from collections import Counter
 import re
 import numpy as np
+from sklearn.feature_extraction import DictVectorizer
 
-def general_inquirer_to_dict():
-	#feature_names = ["Positiv", "Negativ", "Active", "Passive", "Object"]
-	inquirer_dict = {}
-	count = 0
-	with open("harvard_general_inquirer.txt", 'r') as f:
-		reader = csv.reader(f, delimiter='\t')
-		header = reader.next()
-		#indices = [header.index(name) for name in feature_names]
-		for row in reader:
-			#inquirer_dict[row[0].lower()] = itemgetter(*indices)(row)
-			#header.index("Defined") # remove definition
-			inquirer_dict[row[0].lower()] = [elem for elem in row[2:185] if elem != '']
-	return inquirer_dict
 
 bad_action = "bad_action.txt"
 bad_dialogue = "bad_dialogue.txt"
@@ -89,20 +77,56 @@ def extract_senti_wordnet(text):
 # tf-idf code
 all_genres = ["Action", "Adventure", "Animation", "Comedy", "Crime", "Drama", "Family", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Short", "Thriller", "War"]
 
+
+# combine synonyms
+def general_inquirer_to_dict():
+	#feature_names = ["Positiv", "Negativ", "Active", "Passive", "Object"]
+	inquirer_dict = {}
+	count = 0
+	with open("harvard_general_inquirer.txt", 'r') as f:
+		reader = csv.reader(f, delimiter='\t')
+		header = reader.next()
+		#indices = [header.index(name) for name in feature_names]
+		for row in reader:
+			#inquirer_dict[row[0].lower()] = itemgetter(*indices)(row)
+			#header.index("Defined") # remove definition
+			key = row[0].split('#')[0].lower()
+			# can have many of same feature per word (implicit weighting)
+			if key in inquirer_dict:
+				inquirer_dict[key].extend([elem for elem in row[2:185] if elem != ''])
+			else:
+				inquirer_dict[key] = [elem for elem in row[2:185] if elem != '']
+	return inquirer_dict
+
+opposites_features = [('Power', 'Weak'), ('Active', 'Passive'), ('Pleasur', 'Pain'), ('Virtue', 'Vice'), ('Ovrst', 'Undrst'), ('Female', 'MALE'), ('Increas', 'Decreas'), ('Positiv', 'Negativ')]
+single_features = ['Relig', 'POLIT', 'SocRel', 'Causal', 'Object', 'Self', 'Our', 'You']
 def general_inquirer_features(text):
 	inquirer_dict = general_inquirer_to_dict()
-	word_list = text.split()
+	#word_list = text.split()
+	word_list = re.findall(r"[\w']+", text.lower())
 	word_counter = Counter(word_list)
 	hgi_feature_dict = {}
+	features_dict = dict((feature,0) for feature in single_features+opposites_features)
 	for word in word_counter:
 		if word in inquirer_dict:
-			for feature in inquirer_dict[word]:
-				if feature not in hgi_feature_dict:
-					hgi_feature_dict[feature] = word_counter[word]
-				else:
-					hgi_feature_dict[feature] += word_counter[word]
-	for feature in hgi_feature_dict:
-		hgi_feature_dict[feature] = float(hgi_feature_dict[feature])/len(word_list)
+				for feature in single_features:
+					if feature in inquirer_dict[word]:
+						features_dict[feature] += word_counter[word]
+				# accounts for synoynms of words having different meanings
+				for tup in opposites_features:
+					if tup[0] in inquirer_dict[word] and tup[1] not in inquirer_dict[word]:
+						features_dict[tup] += word_counter[word]
+					elif tup[0] not in inquirer_dict[word] and tup[1] in inquirer_dict[word]:
+						features_dict[tup] -= word_counter[word]
+					elif inquirer_dict[word].count(tup[0]) > inquirer_dict[word].count(tup[1]):
+						features_dict[tup] += word_counter[word]
+					elif inquirer_dict[word].count(tup[0]) < inquirer_dict[word].count(tup[1]):
+						features_dict[tup] -= word_counter[word]
+		for feature in features_dict:
+			features_dict[feature] = float(features_dict[feature])/len(text)
+	vectorizer = DictVectorizer()
+	return (list(vectorizer.fit_transform([features_dict]).toarray()[0]), vectorizer.get_feature_names())
+	
 
 # amount of dialogue, action, dialogue to action
 def dialogue_action_length_features(dialogue_list, action_list):
@@ -139,7 +163,8 @@ def extract_features(chunk):
 	action_features = extract_features_sub(all_action.lower())
 	chunk_summary_features = dialogue_action_length_features(dialogue_list, action_list)
 	dialogue_type_features = get_dialogue_type_features(chunk)
-	return dialogue_features + action_features +  chunk_summary_features + dialogue_type_features
+	inquirer_features, inquirer_names = general_inquirer_features(chunk)
+	return dialogue_features + action_features +  chunk_summary_features + dialogue_type_features + inquirer_features
 	#genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
 
 
