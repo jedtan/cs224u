@@ -74,7 +74,7 @@ def format_script(filename = None, url = "http://www.imsdb.com/scripts/Revenant,
 	page_number_regex = re.compile(r'\d\.')
 	dialogue = False # flag for dialogue, triggered by character name
 	while idx < len(scr_lines):
-		curr_line = scr_lines[idx]
+		curr_line = scr_lines[idx].decode('ascii','ignore')
 		if curr_line == '':
 			if len(curr_lines) > 0:
 				if dialogue:
@@ -100,7 +100,10 @@ def format_script(filename = None, url = "http://www.imsdb.com/scripts/Revenant,
 				formatted_lines.append((curr_line, "scene heading"))
 			start = True
 		elif idx + 1 < len(scr_lines) and is_dialogue(curr_line, scr_lines[idx+1]):
-			formatted_lines.append((curr_line, "character name"))
+			if (curr_line.split()[-1].startswith('(') and curr_line.split()[-1].endswith(')')):
+				formatted_lines.append((' '.join(curr_line.split()[:-1]), "character name", curr_line.split()[-1]))
+			else:
+				formatted_lines.append((curr_line, "character name",''))
 			dialogue = True
 		else:
 			curr_lines.append(curr_line)
