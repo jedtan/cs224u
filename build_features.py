@@ -84,9 +84,11 @@ def get_status(row):
 	#3 metascored
 	#4 rottentomatoes
 	if flagUseTomatoes:
-		if row[4] > tomatoesGood:
+		if row[4] == 'N/A': 
+			return "Neutral"
+		elif float(row[4]) > tomatoesGood:
 			return "Good"
-		elif row[4] < tomatoesBad:
+		elif float(row[4]) < tomatoesBad:
 			return "Bad"
 		else:
 			return "Neutral"
@@ -104,18 +106,16 @@ def get_summary_features(scenes):
 # scaling data
 # 25th hour?
 
-def build_features(scale_features = False):
+def build_features(total, scale_features = False):
 	film_list = []
 	feat_list = [] 
-	qual_list = []
+	qual_list = [] 
 	count = 0
 	with open('imsdb_ratings.csv', 'rb') as csvfile:
 		reader = csv.reader(csvfile)
 		for row in reader:
-			count += 1
-			if count == 10:
-				break
 			if get_status(row) == "Good" or get_status(row) == "Bad":
+				print get_status(row)
 				file_name = file_base + row[0] + ".txt"
 				print file_name
 				scenes = format_script(file_name)
@@ -126,19 +126,29 @@ def build_features(scale_features = False):
 				# Segment level features
 				chunks = script_to_n_chunks(scenes)
 				features = []
+				append = True
 				for chunk in chunks:
 				# change input parameter to scenes for extract features
 					chunk_features = extract_features(chunk)
+					if chunk_features is False:
+						append = False
+						print "BAD CHUNK"
+						break
 					features = features + chunk_features
 				# Full script features
 				script_summary_features = []
 				num_scenes = len(scenes)
-				feat_list.append(features)
-				if get_status(row) == "Good":
-					qual_list.append(1)
-				else:
-					qual_list.append(0)
-				film_list.append(row[0])
+
+				if append:
+					feat_list.append(features)
+					if get_status(row) == "Good":
+						qual_list.append(1)
+					else:
+						qual_list.append(0)
+					film_list.append(row[0])
+					count += 1
+					if count >= total:
+						break
 	return film_list, qual_list, feat_list
 
 #chunks = script_to_n_chunks(scenes)

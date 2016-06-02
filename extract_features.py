@@ -59,7 +59,12 @@ def find_lex_d(text):
         if str(content)[2] in error_codes:
             print(content)                    # print error message if error
         else:
-            return float(content)  # print Lexical diversity score
+        	if content == "EMPTY STRING":
+        		return 0
+        	if content == "TOO SHORT":
+        		return 90
+        	print "Content %f" %(float(content))
+        	return float(content)  # print Lexical diversity score
     else:
         print('Error 200 thrown from server')
 
@@ -107,8 +112,11 @@ def extract_features(chunk):
 	#print all_dialogue
 	action_list = [line[0] for line in chunk if line[1] == 'action']
 	all_action = ' '.join(action_list)
+	if len(all_dialogue) == 0 or len(all_action) == 0:
+		return []
 	dialogue_features = extract_features_sub(all_dialogue)
 	action_features = extract_features_sub(all_action)
+
 	return dialogue_features + action_features
 	#genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
 
