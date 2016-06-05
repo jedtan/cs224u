@@ -53,7 +53,7 @@ def find_lex_d(text):
         	if content == "TOO SHORT":
         		return 90
         	print "Content %f" %(float(content))
-        	return float(content)  # print Lexical diversity score
+        	return {'lexical_diversity': float(content)}  # print Lexical diversity score
     else:
         print('Error 200 thrown from server')
 
@@ -70,7 +70,7 @@ def extract_senti_wordnet(text):
 			overall_score += (synonym.pos_score() - synonym.neg_score())
 	overall_score /= len(text)
 	#neg_score /= len(text)
-	return [overall_score]
+	return {'senti_score': overall_score}
 
 
 
@@ -124,8 +124,9 @@ def general_inquirer_features(text):
 						features_dict[tup] -= word_counter[word]
 		for feature in features_dict:
 			features_dict[feature] = float(features_dict[feature])/len(text)
-	vectorizer = DictVectorizer()
-	return (list(vectorizer.fit_transform([features_dict]).toarray()[0]), vectorizer.get_feature_names())
+	return features_dict
+	#vectorizer = DictVectorizer()
+	#return (list(vectorizer.fit_transform([features_dict]).toarray()[0]), vectorizer.get_feature_names())
 	
 
 # amount of dialogue, action, dialogue to action
@@ -137,7 +138,8 @@ def dialogue_action_length_features(dialogue_list, action_list):
 	dialogue_len_std = np.std(dialogue_lens)
 	action_len_mean = np.mean(action_lens)
 	action_len_std = np.std(action_lens)
-	return [dialogue_to_action,dialogue_len_mean,dialogue_len_std,action_len_mean,action_len_std]
+	return {'dialogue_to_action': dialogue_to_action, 'dialogue_len_mean': dialogue_len_mean, 'dialogue_len_std': dialogue_len_std, 'action_len_mean': action_len_mean, 'action_len_std': action_len_std}
+	#return [dialogue_to_action,dialogue_len_mean,dialogue_len_std,action_len_mean,action_len_std]
 
 # voice over and off screen
 def get_dialogue_type_features(chunk):
@@ -147,7 +149,7 @@ def get_dialogue_type_features(chunk):
 	proportion_os = float(dialogue_type.count("os"))/len(dialogue_type)
 	#print proportion_vo
 	#print proportion_os
-	return [proportion_vo, proportion_os]
+	return {'proportion_vo': proportion_vo, 'proportion_os': proportion_os}
 
 def extract_features(chunk):
 	if chunk is None:
@@ -163,7 +165,13 @@ def extract_features(chunk):
 	action_features = extract_features_sub(all_action.lower())
 	chunk_summary_features = dialogue_action_length_features(dialogue_list, action_list)
 	dialogue_type_features = get_dialogue_type_features(chunk)
-	return dialogue_features + action_features +  chunk_summary_features + dialogue_type_features
+	final_features = {}
+	final_features.update(dialogue_features)
+	final_features.update(action_features)
+	final_features.update(chunk_summary_features)
+	final_features.update(dialogue_type_features)
+	return final_features
+	#return dialogue_features + action_features +  chunk_summary_features + dialogue_type_features
 	#genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
 
 
@@ -173,15 +181,20 @@ def extract_features_sub(text):
 	## aggregate all dialogue, action
 	#scenes = format_script(file_name)
 	if len(text) > 0:
-		language_complexity = [textstat.flesch_reading_ease(text), textstat.flesch_kincaid_grade(text), textstat.automated_readability_index(text)]
+		language_complexity = {'flesch_reading_ease': textstat.flesch_reading_ease(text), 'flesch_kincaid_grade': textstat.flesch_kincaid_grade(text), 'automated_readability_index': textstat.automated_readability_index(text)}
 	else:
 		#badD.write(movie_name + "\n")
-		language_complexity = [0,0,0]
-	lexical_diversity = [find_lex_d(text)]
+		language_complexity = {'flesch_reading_ease': 0, 'flesch_kincaid_grade': 0, 'automated_readability_index': 0}
+	lexical_diversity = find_lex_d(text)
 	sentiment = extract_senti_wordnet(text)
 	#print sentiment
-	inquirer_features, inquirer_names = general_inquirer_features(text)
-	final_features = language_complexity + lexical_diversity + sentiment + inquirer_features
+	inquirer_features = general_inquirer_features(text)
+	final_features = {}
+	final_features.update(language_complexity)
+	final_features.update(lexical_diversity)
+	final_features.update(sentiment)
+	final_features.update(inquirer_features)
+	#final_features = language_complexity + lexical_diversity + sentiment + inquirer_features
 	return final_features
 
 # for each group of features, we return a tup
