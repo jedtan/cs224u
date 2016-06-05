@@ -98,7 +98,7 @@ def general_inquirer_to_dict():
 				inquirer_dict[key] = [elem for elem in row[2:185] if elem != '']
 	return inquirer_dict
 
-opposites_features = [('Power', 'Weak'), ('Active', 'Passive'), ('Pleasur', 'Pain'), ('Virtue', 'Vice'), ('Ovrst', 'Undrst'), ('Female', 'MALE'), ('Increas', 'Decreas'), ('Positiv', 'Negativ')]
+opposites_features = [('Power', 'Weak'), ('Active', 'Passive'), ('Pleasur', 'Pain'), ('Virtue', 'Vice'), ('Ovrst', 'Undrst'), ('Female', 'MALE'), ('Increas', 'Decreas'), ('Positiv', 'Negativ'), ('PowGain', 'PowLoss')]
 single_features = ['Relig', 'POLIT', 'SocRel', 'Causal', 'Object', 'Self', 'Our', 'You']
 def general_inquirer_features(text):
 	inquirer_dict = general_inquirer_to_dict()
@@ -163,8 +163,7 @@ def extract_features(chunk):
 	action_features = extract_features_sub(all_action.lower())
 	chunk_summary_features = dialogue_action_length_features(dialogue_list, action_list)
 	dialogue_type_features = get_dialogue_type_features(chunk)
-	inquirer_features, inquirer_names = general_inquirer_features(chunk)
-	return dialogue_features + action_features +  chunk_summary_features + dialogue_type_features + inquirer_features
+	return dialogue_features + action_features +  chunk_summary_features + dialogue_type_features
 	#genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
 
 
@@ -181,7 +180,8 @@ def extract_features_sub(text):
 	lexical_diversity = [find_lex_d(text)]
 	sentiment = extract_senti_wordnet(text)
 	#print sentiment
-	final_features = language_complexity + lexical_diversity + sentiment
+	inquirer_features, inquirer_names = general_inquirer_features(text)
+	final_features = language_complexity + lexical_diversity + sentiment + inquirer_features
 	return final_features
 
 # for each group of features, we return a tup

@@ -2,8 +2,8 @@ from build_features import *
 from sklearn import linear_model
 from random import sample
 
-total_size = 20
-test_size = 5
+total_size = 5
+test_size = 1
 
 random_values = sample(range( total_size), test_size)
 
@@ -29,14 +29,16 @@ def fit_maxent_classifier(X, y):
     return mod
 
 fit_maxent_classifier(feat_list, qual_list)
-
+"""
 #sample linear sgd classifier
-X = np.array(feat_list)
-Y = np.array(qual_list)
+X = np.array(feat_train_list)
+Y = np.array(qual_train_list)
 clf = linear_model.SGDClassifier()
 clf.fit(X, Y)
-print clf.coef_
+clf.predict(feat_test_set)
 
+print clf.coef_
+"""
 #sample classifier
 for i, item in enumerate(film_list):
 		film_list_file.write("%s\n" % item)
