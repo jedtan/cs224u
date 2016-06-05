@@ -32,9 +32,8 @@ film_list = []
 feat_list = [] 
 qual_list = []
 
-#file_base = "imsdb_scripts/"
 
-#file_name = '{}{}'.format(file_base,"American Hustle.txt")
+file_name = '{}{}'.format(file_base,"American Hustle.txt")
 
 
 #scenes = format_script(file_name)
@@ -114,15 +113,26 @@ def get_genre_dict():
 
 # amount of dialogue, action, dialogue to action
 
-def get_summary_features(scenes):
-	summary_features = []
+def get_summary_features(scenes, movie_name):
+	#summary_features = []
 	genre_dict = get_genre_dict()
 	all_genres = ["Action", "Adventure", "Animation", "Comedy", "Crime", "Drama", "Family", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Short", "Thriller", "War"]
 	genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
-	summary_features.extend(genre_features)
-	num_scenes = len(scenes)
+	genre_features_dict = dict(zip(all_genres, genre_features))
+	#summary_features.extend(genre_features)
+	num_scenes = {'num_scenes': len(scenes)}
+	summary_features = {}
+	summary_features.update(genre_features_dict)
+	summary_features.update(num_scenes)
+	return summary_features
 
-
+"""
+features = {}
+for idx, chunk in enumerate(chunks):
+# change input parameter to scenes for extract features
+	chunk_features = extract_features(chunk, idx + 1)
+	features.update(chunk_features)
+"""
 # scaling data
 # 25th hour?
 
@@ -135,8 +145,9 @@ def build_features(scale_features = False):
 		reader = csv.reader(csvfile)
 		for row in reader:
 			count += 1
-			if count == 10:
-				break
+			print "Film No.: " + str(count)
+			#if count == 10:
+			#	break
 			if get_status(row) == "Good" or get_status(row) == "Bad":
 				file_name = file_base + row[0] + ".txt"
 				print file_name
@@ -144,17 +155,20 @@ def build_features(scale_features = False):
 				if scenes is None:
 					print "No file or formatting error"
 					continue
-				print len(scenes)
+				print "Num scenes: " + str(len(scenes))
 				# Segment level features
 				chunks = script_to_n_chunks(scenes)
-				features = []
-				for chunk in chunks:
+				features = {}
+				for idx, chunk in enumerate(chunks):
 				# change input parameter to scenes for extract features
-					chunk_features = extract_features(chunk)
-					features = features + chunk_features
+					chunk_features = extract_features(chunk, idx + 1)
+					features.update(chunk_features)
 				# Full script features
-				script_summary_features = []
-				num_scenes = len(scenes)
+				script_summary_features = get_summary_features(scenes, row[0])
+				final_features = {}
+				final_features.update(features)
+				final_features.update(script_summary_features)
+				feat_list.append(final_features)
 				if get_status(row) == "Good":
 					qual_list.append(1)
 				else:

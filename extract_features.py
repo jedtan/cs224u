@@ -13,7 +13,7 @@ import re
 import numpy as np
 from sklearn.feature_extraction import DictVectorizer
 
-
+"""
 bad_action = "bad_action.txt"
 bad_dialogue = "bad_dialogue.txt"
 
@@ -32,7 +32,7 @@ with open('imsdb_ratings.csv', 'rb') as csvfile:
 			row_list = [row[1]]
 
 		genre_dict[row[0]] = row_list
-
+"""
 #print genre_dict
 
 # amount of dialogue to action
@@ -52,7 +52,6 @@ def find_lex_d(text):
         		return 0
         	if content == "TOO SHORT":
         		return 90
-        	print "Content %f" %(float(content))
         	return {'lexical_diversity': float(content)}  # print Lexical diversity score
     else:
         print('Error 200 thrown from server')
@@ -106,7 +105,7 @@ def general_inquirer_features(text):
 	word_list = re.findall(r"[\w']+", text.lower())
 	word_counter = Counter(word_list)
 	hgi_feature_dict = {}
-	features_dict = dict((feature,0) for feature in single_features+opposites_features)
+	features_dict = dict((feature,0) for feature in single_features+ ['/'.join(tup) for tup in opposites_features])
 	for word in word_counter:
 		if word in inquirer_dict:
 				for feature in single_features:
@@ -115,13 +114,13 @@ def general_inquirer_features(text):
 				# accounts for synoynms of words having different meanings
 				for tup in opposites_features:
 					if tup[0] in inquirer_dict[word] and tup[1] not in inquirer_dict[word]:
-						features_dict[tup] += word_counter[word]
+						features_dict['/'.join(tup)] += word_counter[word]
 					elif tup[0] not in inquirer_dict[word] and tup[1] in inquirer_dict[word]:
-						features_dict[tup] -= word_counter[word]
+						features_dict['/'.join(tup)] -= word_counter[word]
 					elif inquirer_dict[word].count(tup[0]) > inquirer_dict[word].count(tup[1]):
-						features_dict[tup] += word_counter[word]
+						features_dict['/'.join(tup)] += word_counter[word]
 					elif inquirer_dict[word].count(tup[0]) < inquirer_dict[word].count(tup[1]):
-						features_dict[tup] -= word_counter[word]
+						features_dict['/'.join(tup)] -= word_counter[word]
 		for feature in features_dict:
 			features_dict[feature] = float(features_dict[feature])/len(text)
 	return features_dict
@@ -151,7 +150,7 @@ def get_dialogue_type_features(chunk):
 	#print proportion_os
 	return {'proportion_vo': proportion_vo, 'proportion_os': proportion_os}
 
-def extract_features(chunk):
+def extract_features(chunk, nth_chunk):
 	if chunk is None:
 		return None
 	dialogue_list = [re.sub(r'\([^)]*\)', '', line[0]) for line in chunk if line[1] == 'dialogue']
@@ -170,6 +169,8 @@ def extract_features(chunk):
 	final_features.update(action_features)
 	final_features.update(chunk_summary_features)
 	final_features.update(dialogue_type_features)
+	for feature in final_features:
+		final_features[feature + str(nth_chunk)] = final_features.pop(feature)
 	return final_features
 	#return dialogue_features + action_features +  chunk_summary_features + dialogue_type_features
 	#genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
