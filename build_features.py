@@ -141,40 +141,41 @@ def build_features(scale_features = False):
 	feat_list = [] 
 	qual_list = []
 	count = 0
-	with open('imsdb_ratings.csv', 'rb') as csvfile:
+	with open('imsdb_ratings_processed.csv', 'rb') as csvfile:
+		__ = csvfile.readline()
 		reader = csv.reader(csvfile)
 		for row in reader:
 			count += 1
 			print "Film No.: " + str(count)
 			#if count == 10:
 			#	break
-			if get_status(row) == "Good" or get_status(row) == "Bad":
-				file_name = file_base + row[0] + ".txt"
-				print file_name
-				scenes = format_script(file_name)
-				if scenes is None:
-					print "No file or formatting error"
-					continue
-				print "Num scenes: " + str(len(scenes))
-				# Segment level features
-				chunks = script_to_n_chunks(scenes)
-				features = {}
-				for idx, chunk in enumerate(chunks):
-				# change input parameter to scenes for extract features
-					chunk_features = extract_features(chunk, idx + 1)
-					features.update(chunk_features)
-				# Full script features
-				script_summary_features = get_summary_features(scenes, row[0])
-				final_features = {}
-				final_features.update(features)
-				final_features.update(script_summary_features)
-				feat_list.append(final_features)
-				if get_status(row) == "Good":
-					qual_list.append(1)
-				else:
-					qual_list.append(0)
-				film_list.append(row[0])
-	return film_list, qual_list, feat_list
+			#if get_status(row) == "Good" or get_status(row) == "Bad":
+			file_name = file_base + row[0] + ".txt"
+			print file_name
+			scenes = format_script(file_name)
+			if scenes is None:
+				print "No file or formatting error"
+				continue
+			print "Num scenes: " + str(len(scenes))
+			# Segment level features
+			chunks = script_to_n_chunks(scenes)
+			features = {}
+			for idx, chunk in enumerate(chunks):
+			# change input parameter to scenes for extract features
+				chunk_features = extract_features(chunk, idx + 1)
+				features.update(chunk_features)
+			# Full script features
+			script_summary_features = get_summary_features(scenes, row[0])
+			final_features = {}
+			final_features.update(features)
+			final_features.update(script_summary_features)
+			feat_list.append(final_features)
+			#if get_status(row) == "Good":
+			qual_list.append(row[4])
+			#else:
+			#qual_list.append(0)
+			film_list.append(row[0])
+	return film_list, feat_list, qual_list
 
 #chunks = script_to_n_chunks(scenes)
 #features = []

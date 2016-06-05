@@ -1,0 +1,497 @@
+"name","genre","tomato_reviews","tomato_meter","binary_quality"
+"12 Years a Slave","Biography, Drama, History",300,95.6666666666667,1
+"127 Hours","Adventure, Biography, Drama",217,93.0875576036866,1
+"1492: Conquest of Paradise","Adventure, Biography, Drama",18,38.8888888888889,0
+"15 Minutes","Action, Crime, Drama",123,32.520325203252,0
+"2001: A Space Odyssey","Mystery, Sci-Fi",78,93.5897435897436,1
+"2012","Action, Adventure, Sci-Fi",238,39.4957983193277,0
+"30 Minutes or Less","Action, Comedy, Crime",159,44.0251572327044,0
+"44 Inch Chest","Crime, Drama",81,40.7407407407407,0
+"48 Hrs.","Action, Comedy, Crime",39,92.3076923076923,1
+"8MM","Mystery, Thriller",78,21.7948717948718,0
+"Above the Law","Action, Crime, Mystery",16,50,0
+"Absolute Power","Action, Crime, Drama",42,45.2380952380952,0
+"Ace Ventura: Pet Detective","Comedy",51,45.0980392156863,0
+"After.Life","Drama, Horror, Mystery",54,25.9259259259259,0
+"Agnes of God","Drama, Mystery",28,46.4285714285714,0
+"Airplane","Comedy",58,96.551724137931,1
+"Aladdin","Animation, Adventure, Comedy",68,94.1176470588235,1
+"Alien","Horror, Sci-Fi",100,97,1
+"Aliens","Action, Horror, Sci-Fi",62,98.3870967741936,1
+"All About Eve","Drama",63,100,1
+"All About Steve","Comedy, Romance",135,6.66666666666667,0
+"All the President's Men","Biography, Drama, History",54,92.5925925925926,1
+"Alone in the Dark","Horror, Sci-Fi",117,0.854700854700855,0
+"Amadeus","Biography, Drama, History",83,95.1807228915663,1
+"Amelia","Adventure, Biography, Drama",157,20.3821656050955,0
+"American Graffiti","Comedy, Drama, Music",43,95.3488372093023,1
+"American Hustle","Crime, Drama",254,92.9133858267717,1
+"American Outlaws","Action, Western",103,13.5922330097087,0
+"American President, The","Comedy, Drama, Romance",52,90.3846153846154,1
+"American Splendor","Biography, Comedy, Drama",181,93.9226519337017,1
+"Amour","Drama, Romance",198,92.9292929292929,1
+"An Education","Drama",180,94.4444444444444,1
+"Analyze That","Comedy, Crime",149,26.8456375838926,0
+"Angels & Demons","Mystery, Thriller",249,36.9477911646586,0
+"Annie Hall","Comedy, Romance",66,98.4848484848485,1
+"Anonymous","Drama, History, Thriller",168,46.4285714285714,0
+"Antitrust","Action, Crime, Drama",106,23.5849056603774,0
+"Antz","Animation, Adventure, Comedy",89,95.5056179775281,1
+"Apartment, The","Comedy, Drama, Romance",59,93.2203389830509,1
+"Apocalypse Now","Drama, War",78,97.4358974358974,1
+"Apollo 13","Adventure, Drama, History",85,95.2941176470588,1
+"Argo","Biography, Drama, History",304,95.7236842105263,1
+"Armageddon","Action, Adventure, Sci-Fi",115,39.1304347826087,0
+"Arthur","Comedy, Romance",188,25.531914893617,0
+"Artist, The","Comedy, Drama, Romance",275,97.0909090909091,1
+"Assassins","Action, Crime, Thriller",46,15.2173913043478,0
+"At First Sight","Drama, Romance",38,31.5789473684211,0
+"Authors Anonymous","Comedy",14,7.14285714285714,0
+"Autumn in New York","Drama, Romance",71,19.7183098591549,0
+"Avengers, The","Action, Adventure, Sci-Fi",315,92.0634920634921,1
+"Avengers, The (2012)","Action, Adventure, Sci-Fi",315,92.0634920634921,1
+"Back to the Future","Adventure, Comedy, Sci-Fi",77,96.1038961038961,1
+"Back-up Plan, The","Comedy, Romance",142,18.3098591549296,0
+"Bad Boys","Action, Comedy, Crime",47,42.5531914893617,0
+"Bad Day at Black Rock","Crime, Drama, Mystery",29,96.551724137931,1
+"Bad Dreams","Horror, Thriller",9,11.1111111111111,0
+"Bad Teacher","Comedy",181,43.646408839779,0
+"Badlands","Crime, Drama",50,98,1
+"Bamboozled","Comedy, Drama, Music",97,48.4536082474227,0
+"Barry Lyndon","Adventure, Drama, History",52,96.1538461538462,1
+"Barton Fink","Comedy, Drama",54,90.7407407407407,1
+"Basic","Action, Crime, Drama",142,21.1267605633803,0
+"Batman Forever","Action, Adventure, Fantasy",58,41.3793103448276,0
+"Battle of Algiers, The","Drama, War",76,98.6842105263158,1
+"Battle of Shaker Heights, The","Drama, Romance, Comedy",58,41.3793103448276,0
+"Beach, The","Adventure, Drama, Thriller",116,18.9655172413793,0
+"Bean","Comedy, Family",31,41.9354838709677,0
+"Being John Malkovich","Comedy, Drama, Fantasy",123,92.6829268292683,1
+"Being There","Comedy, Drama",46,95.6521739130435,1
+"Big","Comedy, Drama, Family",72,97.2222222222222,1
+"Big White, The","Comedy, Crime, Drama",10,30,0
+"Birds, The","Horror",51,96.078431372549,1
+"Black Dahlia, The","Crime, Drama, Mystery",186,32.258064516129,0
+"Blade: Trinity","Action, Adventure, Fantasy",165,25.4545454545455,0
+"Blue Velvet","Drama, Mystery, Thriller",62,93.5483870967742,1
+"Body Heat","Crime, Drama, Thriller",37,97.2972972972973,1
+"Body of Evidence","Drama, Thriller",34,5.88235294117647,0
+"Bonfire of the Vanities","Comedy, Drama",50,16,0
+"Bonnie and Clyde","Biography, Crime, Drama",51,90.1960784313726,1
+"Boogie Nights","Drama",65,92.3076923076923,1
+"Book of Eli, The","Action, Adventure, Drama",192,47.9166666666667,0
+"Boondock Saints, The","Action, Crime, Thriller",25,20,0
+"Bound","Crime, Drama, Romance",37,91.8918918918919,1
+"Bounty Hunter, The","Action, Comedy, Romance",143,12.5874125874126,0
+"Bourne Ultimatum, The","Action, Thriller",257,92.9961089494163,1
+"Box, The","Drama, Fantasy, Mystery",150,44.6666666666667,0
+"Brazil","Drama, Sci-Fi",46,97.8260869565217,1
+"Breaking Away","Comedy, Drama, Sport",35,94.2857142857143,1
+"Broadcast News","Comedy, Drama, Romance",41,97.5609756097561,1
+"Bruce Almighty","Comedy, Drama, Fantasy",184,48.3695652173913,0
+"Bull Durham","Comedy, Romance, Sport",63,96.8253968253968,1
+"Burlesque","Drama, Music, Romance",148,36.4864864864865,0
+"Burning Annie","Comedy, Drama, Romance",7,28.5714285714286,0
+"Butterfly Effect, The","Sci-Fi, Thriller",169,32.5443786982249,0
+"Capote","Biography, Crime, Drama",182,90.1098901098901,1
+"Carrie","Drama, Fantasy, Horror",54,92.5925925925926,1
+"Cars 2","Animation, Adventure, Comedy",205,39.0243902439024,0
+"Casablanca","Drama, Romance, War",73,97.2602739726027,1
+"Case 39","Horror, Mystery, Thriller",74,21.6216216216216,0
+"Catch Me If You Can","Biography, Crime, Drama",195,95.8974358974359,1
+"Catwoman","Action, Crime, Fantasy",195,8.71794871794872,0
+"Cell, The","Horror, Sci-Fi, Thriller",146,45.8904109589041,0
+"Change-Up, The","Comedy, Fantasy",148,25,0
+"Charade","Comedy, Mystery, Romance",36,91.6666666666667,1
+"Chasing Sleep","Horror, Mystery, Thriller",6,50,0
+"Cherry Falls","Horror, Mystery, Thriller",14,50,0
+"Chinatown","Drama, Mystery, Thriller",61,98.3606557377049,1
+"Cirque du Freak: The Vampire's Assistant","Action, Adventure, Fantasy",135,37.7777777777778,0
+"Citizen Kane","Drama, Mystery",71,100,1
+"Clash of the Titans","Action, Adventure, Fantasy",239,28.0334728033473,0
+"Code of Silence","Action, Crime, Drama",12,50,0
+"Collateral Damage","Action, Drama, Thriller",142,19.0140845070423,0
+"Colombiana","Action, Crime, Drama",94,26.5957446808511,0
+"Color of Night","Mystery, Romance, Thriller",46,21.7391304347826,0
+"Constantine","Drama, Fantasy, Horror",218,46.3302752293578,0
+"Coraline","Animation, Fantasy",257,90.272373540856,1
+"Coriolanus","Drama, Thriller, War",136,92.6470588235294,1
+"Cradle 2 the Grave","Action, Crime, Drama",121,25.6198347107438,0
+"Creation","Biography, Drama",110,46.3636363636364,0
+"Crime Spree","Action, Comedy, Crime",7,42.8571428571429,0
+"Crouching Tiger, Hidden Dragon","Action, Drama, Romance",151,97.3509933774834,1
+"Croupier","Crime, Drama",54,98.1481481481482,1
+"Crow Salvation, The","Action, Crime, Fantasy",9,22.2222222222222,0
+"Crow: City of Angels, The","Action, Fantasy, Thriller",33,12.1212121212121,0
+"Cruel Intentions","Drama, Romance",78,48.7179487179487,0
+"Crying Game","Crime, Drama, Romance",62,96.7741935483871,1
+"Damned United, The","Biography, Drama, Sport",128,92.96875,1
+"Dark Knight, The","Action, Crime, Thriller",314,93.9490445859873,1
+"Day the Earth Stood Still, The","Drama, Sci-Fi, Thriller",191,20.9424083769633,0
+"Days of Heaven","Drama, Romance",48,93.75,1
+"Death to Smoochy","Comedy, Crime, Drama",120,41.6666666666667,0
+"Deception","Crime, Drama, Mystery",96,13.5416666666667,0
+"Deep Rising","Action, Adventure, Horror",29,31.0344827586207,0
+"Deer Hunter, The","Drama, War",61,93.4426229508197,1
+"Departed, The","Crime, Drama, Thriller",263,90.8745247148289,1
+"Detroit Rock City","Comedy, Music",39,46.1538461538462,0
+"Die Hard","Action, Thriller",64,92.1875,1
+"Diner","Comedy, Drama",35,91.4285714285714,1
+"Distinguished Gentleman, The","Comedy, Crime",15,13.3333333333333,0
+"Do The Right Thing","Drama",67,92.5373134328358,1
+"Dog Day Afternoon","Crime, Drama",40,95,1
+"Double Indemnity","Crime, Drama, Film-Noir",54,96.2962962962963,1
+"Drag Me to Hell","Horror, Thriller",253,92.094861660079,1
+"Drive","Crime, Drama",238,92.436974789916,1
+"Drive Angry","Action, Fantasy, Thriller",117,45.2991452991453,0
+"Drop Dead Gorgeous","Comedy",66,43.9393939393939,0
+"Duck Soup","Comedy, Musical, War",45,93.3333333333333,1
+"E.T.","Family, Sci-Fi",112,98.2142857142857,1
+"Eagle Eye","Action, Mystery, Thriller",178,26.4044943820225,0
+"Ed Wood","Biography, Comedy, Drama",60,91.6666666666667,1
+"Eight Legged Freaks","Action, Comedy, Horror",143,48.2517482517483,0
+"El Mariachi","Action, Crime, Thriller",27,92.5925925925926,1
+"Election","Comedy, Drama",104,92.3076923076923,1
+"Elephant Man, The","Biography, Drama",41,90.2439024390244,1
+"Elizabeth: The Golden Age","Biography, Drama, History",165,35.1515151515151,0
+"Enough","Crime, Drama, Thriller",123,21.9512195121951,0
+"Entrapment","Action, Crime, Romance",81,38.2716049382716,0
+"Equilibrium","Action, Drama, Sci-Fi",84,38.0952380952381,0
+"Erik the Viking","Comedy, Adventure, Fantasy",17,47.0588235294118,0
+"Eternal Sunshine of the Spotless Mind","Drama, Romance, Sci-Fi",233,93.1330472103004,1
+"Even Cowgirls Get the Blues","Comedy, Drama, Romance",18,22.2222222222222,0
+"Event Horizon","Horror, Sci-Fi",37,24.3243243243243,0
+"Fabulous Baker Boys, The","Drama, Music, Romance",24,95.8333333333333,1
+"Fantastic Four","Action, Adventure, Sci-Fi",203,26.6009852216749,0
+"Fargo","Crime, Drama, Thriller",87,94.2528735632184,1
+"Fatal Instinct","Comedy, Crime, Thriller",21,19.047619047619,0
+"Fear and Loathing in Las Vegas","Comedy",65,49.2307692307692,0
+"Fighter, The","Biography, Drama, Sport",236,90.2542372881356,1
+"Final Destination","Horror",94,34.0425531914894,0
+"Final Destination 2","Horror",109,47.7064220183486,0
+"Finding Nemo","Animation, Adventure, Comedy",254,99.2125984251968,1
+"Flintstones, The","Comedy, Family, Fantasy",42,21.4285714285714,0
+"Four Rooms","Comedy, Fantasy",44,13.6363636363636,0
+"Frankenstein","Drama, Horror, Sci-Fi",44,100,1
+"Freaked","Comedy, Sci-Fi",17,47.0588235294118,0
+"Freddy vs. Jason","Horror, Thriller",157,40.7643312101911,0
+"French Connection, The","Action, Crime, Drama",55,98.1818181818182,1
+"Friday the 13th Part VIII: Jason Takes Manhattan","Horror",23,8.69565217391304,0
+"From Here to Eternity","Drama, Romance, War",49,91.8367346938775,1
+"Fruitvale Station","Biography, Drama, Romance",189,93.6507936507936,1
+"Fugitive, The","Action, Adventure, Crime",72,95.8333333333333,1
+"Full Metal Jacket","Drama, War",74,94.5945945945946,1
+"G.I. Joe: The Rise of Cobra","Action, Adventure, Sci-Fi",159,34.5911949685535,0
+"Gamer","Action, Sci-Fi, Thriller",75,28,0
+"Get Carter","Action, Crime, Drama",60,11.6666666666667,0
+"Ghost and the Darkness, The","Adventure, Drama, Horror",46,50,0
+"Ghost Rider","Action, Fantasy, Thriller",135,25.9259259259259,0
+"Ghost Ship","Horror",124,13.7096774193548,0
+"Ghost World","Comedy, Drama",153,92.156862745098,1
+"Ghostbusters","Adventure, Comedy, Fantasy",67,97.0149253731343,1
+"Go","Comedy, Crime",72,91.6666666666667,1
+"Godfather Part II","Crime, Drama",72,97.2222222222222,1
+"Gods and Monsters","Biography, Drama",62,95.1612903225806,1
+"Gone in 60 Seconds","Action, Crime, Drama",13,38.4615384615385,0
+"Good Will Hunting","Drama",70,97.1428571428571,1
+"Goodfellas","Biography, Crime, Drama",76,96.0526315789474,1
+"Gothika","Horror, Mystery, Thriller",166,14.4578313253012,0
+"Grand Theft Parsons","Adventure, Comedy, Drama",27,44.4444444444444,0
+"Grapes of Wrath, The","Drama",43,100,1
+"Gravity","Sci-Fi, Thriller",309,96.1165048543689,1
+"Groundhog Day","Comedy, Fantasy, Romance",71,95.7746478873239,1
+"Grudge, The","Fantasy, Horror, Mystery",157,38.8535031847134,0
+"Hackers","Comedy, Crime, Drama",44,31.8181818181818,0
+"Hall Pass","Comedy, Romance",172,33.7209302325581,0
+"Halloween: The Curse of Michael Myers","Horror, Thriller",32,6.25,0
+"Hancock","Action, Fantasy",218,40.8256880733945,0
+"Hannah and Her Sisters","Comedy, Drama, Romance",54,92.5925925925926,1
+"Hannibal","Crime, Drama, Thriller",165,39.3939393939394,0
+"Hard Rain","Action, Crime, Drama",42,28.5714285714286,0
+"Hard to Kill","Action, Drama, Crime",12,33.3333333333333,0
+"Harry Potter and the Prisoner of Azkaban","Adventure, Family, Fantasy",250,90.8,1
+"Haunting, The","Fantasy, Horror, Mystery",90,16.6666666666667,0
+"He's Just Not That Into You","Comedy, Drama, Romance",155,40,0
+"Heathers","Comedy, Crime, Drama",43,95.3488372093023,1
+"Heavenly Creatures","Biography, Crime, Drama",49,91.8367346938775,1
+"Hellbound: Hellraiser II","Horror, Thriller",20,50,0
+"Hellraiser: Deader","Horror, Mystery, Thriller",6,16.6666666666667,0
+"Hellraiser: Hellseeker","Horror, Mystery, Thriller",6,0,0
+"Henry's Crime","Comedy, Crime, Drama",53,39.622641509434,0
+"High Fidelity","Comedy, Drama, Music",164,91.4634146341463,1
+"Highlander: Endgame","Action, Adventure, Fantasy",54,11.1111111111111,0
+"Hills Have Eyes, The","Horror",136,49.2647058823529,0
+"His Girl Friday","Comedy, Drama, Romance",39,97.4358974358974,1
+"Hollow Man","Horror, Sci-Fi",114,27.1929824561403,0
+"Hospital, The","Comedy, Drama, Mystery",10,100,1
+"Hostage","Action, Crime, Drama",155,35.4838709677419,0
+"Hotel Rwanda","Drama, History, War",189,90.4761904761905,1
+"House of 1000 Corpses","Horror",80,18.75,0
+"How to Lose Friends & Alienate People","Comedy, Drama, Romance",109,36.697247706422,0
+"How to Train Your Dragon","Animation, Adventure, Family",201,98.0099502487562,1
+"How to Train Your Dragon 2","Animation, Action, Adventure",162,91.358024691358,1
+"Hudson Hawk","Action, Adventure, Comedy",33,24.2424242424242,0
+"Human Nature","Comedy, Drama",94,48.936170212766,0
+"I Am Number Four","Action, Adventure, Sci-Fi",159,32.7044025157233,0
+"I am Sam","Drama",143,34.2657342657343,0
+"I Spit on Your Grave","Crime, Horror",56,33.9285714285714,0
+"I Still Know What You Did Last Summer","Horror, Mystery",56,7.14285714285714,0
+"In the Bedroom","Crime, Drama",138,93.4782608695652,1
+"In the Loop","Comedy",167,94.0119760479042,1
+"Insider, The","Biography, Drama, Thriller",132,96.2121212121212,1
+"Insomnia","Drama, Mystery, Thriller",200,92,1
+"Inventing the Abbotts","Drama, Romance",26,30.7692307692308,0
+"Island, The","Action, Adventure, Romance",194,39.6907216494845,0
+"It Happened One Night","Comedy, Romance",52,98.0769230769231,1
+"It Happened One Night","Comedy, Romance",52,98.0769230769231,1
+"It's a Wonderful Life","Drama, Family, Fantasy",68,94.1176470588235,1
+"Jacket, The","Drama, Mystery, Sci-Fi",159,44.0251572327044,0
+"Jade","Crime, Drama, Thriller",28,14.2857142857143,0
+"Jason X","Horror, Sci-Fi, Thriller",104,19.2307692307692,0
+"Jaws","Adventure, Drama, Thriller",72,97.2222222222222,1
+"Jennifer's Body","Comedy, Fantasy, Horror",173,42.7745664739884,0
+"Jimmy and Judy","Crime, Drama, Thriller",7,42.8571428571429,0
+"John Q","Crime, Drama, Thriller",131,22.9007633587786,0
+"Judge Dredd","Action, Crime, Sci-Fi",51,17.6470588235294,0
+"Juno","Comedy, Drama, Romance",206,94.1747572815534,1
+"Jurassic Park","Adventure, Sci-Fi, Thriller",117,93.1623931623932,1
+"Kate & Leopold","Comedy, Fantasy, Romance",127,49.6062992125984,0
+"Kids","Drama",54,48.1481481481481,0
+"Kids Are All Right, The","Comedy, Drama",209,93.3014354066986,1
+"Killing Zoe","Crime, Drama, Thriller",28,35.7142857142857,0
+"King's Speech, The","Biography, Drama, History",265,94.7169811320755,1
+"Klute","Crime, Mystery, Thriller",29,96.551724137931,1
+"L.A. Confidential","Crime, Drama, Mystery",108,99.0740740740741,1
+"Lake Placid","Comedy, Horror",76,39.4736842105263,0
+"Larry Crowne","Comedy, Drama, Romance",193,35.7512953367876,0
+"Last Boy Scout, The","Action, Comedy, Crime",33,42.4242424242424,0
+"Last of the Mohicans, The","Action, Adventure, Drama",36,94.4444444444444,1
+"Law Abiding Citizen","Crime, Drama, Thriller",156,25,0
+"Legion","Action, Fantasy, Horror",101,18.8118811881188,0
+"Leviathan","Drama",125,99.2,1
+"Life","Comedy, Crime, Drama",54,50,0
+"Life As A House","Drama",105,46.6666666666667,0
+"Life of David Gale, The","Crime, Drama, Thriller",157,19.1082802547771,0
+"Limey, The","Crime, Drama, Mystery",80,92.5,1
+"Lion King, The","Animation, Adventure, Drama",113,91.1504424778761,1
+"Little Athens","Comedy, Crime, Drama",5,40,0
+"Little Mermaid, The","Animation, Family, Fantasy",67,92.5373134328358,1
+"Little Nicky","Comedy, Fantasy",115,21.7391304347826,0
+"Lone Star","Drama, Mystery",46,93.4782608695652,1
+"Looper","Action, Crime, Drama",248,93.1451612903226,1
+"Lord of the Rings: The Two Towers","Action, Adventure, Drama",248,95.5645161290323,1
+"Losers, The","Action, Crime, Drama",161,49.0683229813665,0
+"Lost Horizon","Adventure, Drama, Fantasy",10,100,1
+"Lost in Space","Action, Adventure, Family",84,27.3809523809524,0
+"Lost in Translation","Drama, Romance",223,95.067264573991,1
+"Machine Gun Preacher","Action, Biography, Crime",112,28.5714285714286,0
+"Mad Max 2: The Road Warrior","Action, Adventure, Sci-Fi",42,97.6190476190476,1
+"Majestic, The (The Bijou)","Drama, Romance",140,42.1428571428571,0
+"Malcolm X","Biography, Drama, History",55,90.9090909090909,1
+"Malibu's Most Wanted","Comedy, Crime",93,31.1827956989247,0
+"Man in the Iron Mask","Action, Adventure",36,33.3333333333333,0
+"Man On Fire","Action, Crime, Drama",161,38.5093167701863,0
+"Man Trouble","Comedy, Romance",30,6.66666666666667,0
+"Man Who Knew Too Much, The","Thriller",32,90.625,1
+"Manhattan Murder Mystery","Comedy, Mystery",27,92.5925925925926,1
+"Manhunter","Crime, Mystery, Thriller",33,93.9393939393939,1
+"Marley & Me","Documentary, Biography, Music",101,95.049504950495,1
+"Martha Marcy May Marlene","Drama, Thriller",195,90.2564102564103,1
+"Marty","Drama, Romance",30,100,1
+"Mary Poppins","Comedy, Family, Fantasy",46,100,1
+"Max Payne","Action, Crime, Drama",131,16.030534351145,0
+"Mean Streets","Crime, Drama, Romance",50,98,1
+"Memento","Mystery, Thriller",168,92.2619047619048,1
+"Men in Black","Comedy, Sci-Fi",85,91.7647058823529,1
+"Metro","Action, Comedy, Crime",34,14.7058823529412,0
+"Miami Vice","Action, Crime, Thriller",195,47.1794871794872,0
+"Midnight Cowboy","Drama",60,90,1
+"Midnight Express","Biography, Crime, Drama",22,95.4545454545455,1
+"Midnight in Paris","Comedy, Fantasy, Romance",207,92.7536231884058,1
+"Mighty Morphin Power Rangers: The Movie","Action, Adventure, Family",22,50,0
+"Milk","Biography, Drama, History",229,93.8864628820961,1
+"Miller's Crossing","Crime, Drama, Thriller",55,90.9090909090909,1
+"Minority Report","Action, Mystery, Sci-Fi",240,90,1
+"Miracle Worker, The","Biography, Drama",20,100,1
+"Mirrors","Horror, Mystery",85,14.1176470588235,0
+"Moneyball","Biography, Drama, Sport",239,94.1422594142259,1
+"Monkeybone","Animation, Comedy, Fantasy",112,19.6428571428571,0
+"Monte Carlo","Adventure, Comedy, Family",91,38.4615384615385,0
+"Moonrise Kingdom","Adventure, Comedy, Drama",231,93.5064935064935,1
+"Moonstruck","Comedy, Drama, Romance",51,92.156862745098,1
+"Mr Deeds Goes to Town","Comedy, Drama, Romance",17,94.1176470588235,1
+"Mud","Drama",169,97.6331360946746,1
+"My Girl","Comedy, Drama, Family",14,50,0
+"Nashville","Comedy, Drama, Music",47,93.6170212765958,1
+"Natural Born Killers","Crime, Drama",35,45.7142857142857,0
+"New York Minute","Comedy",117,11.1111111111111,0
+"Newsies","Drama, Family, History",36,38.8888888888889,0
+"Next","Action, Sci-Fi, Thriller",128,28.125,0
+"Next Friday","Comedy",64,20.3125,0
+"Nick of Time","Action, Crime, Drama",28,28.5714285714286,0
+"Nightbreed","Action, Crime, Drama",22,36.3636363636364,0
+"Nightmare Before Christmas, The","Animation, Family, Fantasy",89,94.3820224719101,1
+"Nightmare Before Christmas, The","Animation, Family, Fantasy",89,94.3820224719101,1
+"Nine","Drama, Musical, Romance",197,37.5634517766497,0
+"Ninja Assassin","Action, Crime, Thriller",113,25.6637168141593,0
+"Ninotchka","Comedy, Romance",31,96.7741935483871,1
+"Ninth Gate, The","Mystery, Thriller",87,41.3793103448276,0
+"No Strings Attached","Comedy, Romance",164,48.780487804878,0
+"Obsessed","Drama, Thriller",89,19.1011235955056,0
+"One Flew Over the Cuckoo's Nest","Drama",58,94.8275862068966,1
+"Only God Forgives","Crime, Drama",150,40,0
+"Ordinary People","Drama",40,92.5,1
+"Orgy of the Dead","Fantasy, Horror",6,0,0
+"Other Boleyn Girl, The","Biography, Drama, History",139,42.4460431654676,0
+"Out of Sight","Crime, Drama, Romance",88,93.1818181818182,1
+"Pacifier, The","Action, Comedy, Drama",129,20.1550387596899,0
+"Pandorum","Action, Horror, Mystery",81,28.3950617283951,0
+"Pariah","Drama",104,93.2692307692308,1
+"Passion of Joan of Arc, The","Biography, Drama, History",39,97.4358974358974,1
+"Pearl Harbor","Action, Drama, History",190,24.7368421052632,0
+"Peeping Tom","Drama, Horror, Thriller",47,95.7446808510638,1
+"Pet Sematary","Fantasy, Horror",23,43.4782608695652,0
+"Pet Sematary II","Fantasy, Horror",19,26.3157894736842,0
+"Petulia","Drama, Romance",11,90.9090909090909,1
+"Pianist, The","Biography, Drama, War",178,95.5056179775281,1
+"Platinum Blonde","Comedy, Romance",7,100,1
+"Postman, The","Action, Adventure, Drama",32,9.375,0
+"Power of One, The","Drama",18,38.8888888888889,0
+"Precious","Drama",221,91.4027149321267,1
+"Priest","Action, Fantasy, Horror",94,14.8936170212766,0
+"Princess Bride, The","Adventure, Comedy, Family",64,96.875,1
+"Private Life of Sherlock Holmes, The","Adventure, Comedy, Crime",23,95.6521739130435,1
+"Program, The","Action, Drama, Sport",20,45,0
+"Prom Night","Horror, Mystery",63,7.93650793650794,0
+"Prophecy, The","Action, Fantasy, Horror",23,43.4782608695652,0
+"Proposal, The","Comedy, Drama, Romance",181,44.1988950276243,0
+"Psycho","Horror, Mystery, Thriller",84,96.4285714285714,1
+"Pulp Fiction","Crime, Drama",77,93.5064935064935,1
+"Queen of the Damned","Drama, Fantasy, Horror",129,17.0542635658915,0
+"Queen, The","Biography, Drama",186,96.7741935483871,1
+"Raging Bull","Biography, Drama, Sport",60,96.6666666666667,1
+"Raising Arizona","Comedy, Crime, Drama",50,90,1
+"Rambling Rose","Drama",18,100,1
+"Rear Window","Mystery, Thriller",63,100,1
+"Rebel Without A Cause","Drama",46,95.6521739130435,1
+"Red Planet","Action, Sci-Fi, Thriller",101,13.8613861386139,0
+"Red Riding Hood","Fantasy, Horror, Mystery",193,10.3626943005181,0
+"Reindeer Games","Action, Crime, Drama",88,25,0
+"Relic, The","Horror, Mystery, Sci-Fi",29,31.0344827586207,0
+"Remember Me","Drama, Romance",136,27.2058823529412,0
+"Replacements, The","Comedy, Sport",108,40.7407407407407,0
+"Repo Man","Comedy, Crime, Sci-Fi",45,97.7777777777778,1
+"Reservoir Dogs","Crime, Drama, Thriller",62,90.3225806451613,1
+"Resident Evil","Action, Horror, Sci-Fi",123,33.3333333333333,0
+"Ringu","Horror, Mystery",36,97.2222222222222,1
+"RKO 281","Biography, Drama",13,92.3076923076923,1
+"Robin Hood: Prince of Thieves","Action, Adventure, Drama",52,50,0
+"Robocop","Action, Sci-Fi, Thriller",192,48.9583333333333,0
+"Rocky","Drama, Sport",56,92.8571428571429,1
+"Roommate, The","Drama, Horror, Thriller",84,3.57142857142857,0
+"Ruins, The","Horror",92,47.8260869565217,0
+"Runaway Bride","Comedy, Romance",85,45.8823529411765,0
+"S. Darko","Mystery, Sci-Fi, Thriller",7,0,0
+"Saint, The","Action, Adventure, Romance",44,29.5454545454545,0
+"Saving Private Ryan","Action, Drama, War",130,92.3076923076923,1
+"Saw","Horror, Mystery",181,48.0662983425414,0
+"Scary Movie 2","Comedy",109,14.6788990825688,0
+"Schindler's List","Biography, Drama, History",85,96.4705882352941,1
+"Scream 3","Horror, Mystery",111,36.036036036036,0
+"Searchers, The","Adventure, Drama, Western",41,100,1
+"Semi-Pro","Comedy, Sport",157,21.0191082802548,0
+"Sense and Sensibility","Drama, Romance",55,98.1818181818182,1
+"Sessions, The","Biography, Comedy, Drama",190,93.1578947368421,1
+"Seventh Seal, The","Drama, Fantasy",53,92.4528301886792,1
+"Sex and the City","Comedy, Drama, Romance",174,49.4252873563218,0
+"Sex, Lies and Videotape","Drama",43,97.6744186046512,1
+"Shakespeare in Love","Comedy, Drama, Romance",130,92.3076923076923,1
+"Shawshank Redemption, The","Crime, Drama",66,90.9090909090909,1
+"Shifty","Thriller",25,96,1
+"Shrek the Third","Animation, Adventure, Comedy",205,40.4878048780488,0
+"Sideways","Adventure, Comedy, Drama",223,96.4125560538117,1
+"Siege, The","Action, Thriller",60,45,0
+"Silver Bullet","Horror",14,50,0
+"Silver Linings Playbook","Comedy, Drama, Romance",229,91.703056768559,1
+"Sling Blade","Drama",51,96.078431372549,1
+"Slumdog Millionaire","Drama, Romance",267,92.1348314606742,1
+"Smokin' Aces","Action, Crime, Drama",155,29.0322580645161,0
+"Snow Falling On Cedars","Drama, Mystery, Romance",91,39.5604395604396,0
+"Snow White and the Huntsman","Action, Adventure, Drama",216,48.1481481481481,0
+"Social Network, The","Biography, Drama",290,95.5172413793103,1
+"Soldier","Action, Drama, Sci-Fi",51,9.80392156862745,0
+"Source Code","Mystery, Sci-Fi, Thriller",244,91.8032786885246,1
+"Speed","Action, Crime, Thriller",60,93.3333333333333,1
+"Speed Racer","Action, Family, Sport",208,38.9423076923077,0
+"Sphere","Drama, Mystery, Sci-Fi",50,12,0
+"St. Elmo's Fire","Drama, Romance",30,46.6666666666667,0
+"Star Trek","Action, Adventure, Sci-Fi",330,94.8484848484848,1
+"Star Trek: First Contact","Action, Adventure, Drama",55,92.7272727272727,1
+"Star Trek: Generations","Action, Adventure, Mystery",48,47.9166666666667,0
+"Star Trek: Nemesis","Action, Adventure, Sci-Fi",158,37.3417721518987,0
+"Star Trek: The Motion Picture","Sci-Fi",34,47.0588235294118,0
+"Stepmom","Comedy, Drama",55,43.6363636363636,0
+"Sting, The","Comedy, Crime, Drama",55,92.7272727272727,1
+"Strangers on a Train","Crime, Film-Noir, Thriller",42,97.6190476190476,1
+"Sugar","Drama, Sport",132,91.6666666666667,1
+"Sunset Blvd.","Drama, Film-Noir",59,98.3050847457627,1
+"Surrogates","Action, Sci-Fi, Thriller",111,38.7387387387387,0
+"Suspect Zero","Crime, Thriller",129,17.8294573643411,0
+"Sweet Hereafter, The","Drama",55,100,1
+"Sweet Smell of Success","Drama, Film-Noir",47,97.8723404255319,1
+"Swordfish","Action, Crime, Thriller",136,25.7352941176471,0
+"Take Shelter","Drama, Thriller",152,91.4473684210526,1
+"Taking Lives","Crime, Mystery, Thriller",158,22.1518987341772,0
+"Taking of Pelham One Two Three, The","Action, Crime, Thriller",32,100,1
+"Taxi Driver","Crime, Drama",68,98.5294117647059,1
+"Terminator Salvation","Action, Sci-Fi",268,32.8358208955224,0
+"They","Horror, Mystery, Thriller",56,37.5,0
+"Three Kings","Action, Adventure, Comedy",129,93.7984496124031,1
+"Three Musketeers, The","Action, Adventure, Romance",91,24.1758241758242,0
+"Thunderbirds","Action, Adventure, Comedy",103,19.4174757281553,0
+"Timber Falls","Horror, Thriller",8,37.5,0
+"Time Machine, The","Sci-Fi, Adventure, Action",150,28.6666666666667,0
+"TMNT","Animation, Action, Adventure",115,33.9130434782609,0
+"Tourist, The","Action, Romance, Thriller",167,19.7604790419162,0
+"Toy Story","Animation, Adventure, Comedy",78,100,1
+"Traffic","Crime, Drama, Thriller",155,92.258064516129,1
+"True Grit","Adventure, Drama, Western",262,96.1832061068702,1
+"True Romance","Action, Crime, Drama",51,92.156862745098,1
+"Truman Show, The","Drama",125,94.4,1
+"Twilight","Drama, Fantasy, Romance",206,48.0582524271845,0
+"Twins","Comedy, Crime",29,34.4827586206897,0
+"Two For The Money","Drama, Sport, Thriller",110,21.8181818181818,0
+"Ugly Truth, The","Comedy, Romance",168,13.0952380952381,0
+"Unforgiven","Western",84,95.2380952380952,1
+"Up","Animation, Adventure, Comedy",281,98.220640569395,1
+"Up in the Air","Drama, Romance",269,90.7063197026022,1
+"Valentine's Day","Comedy, Romance",184,17.9347826086957,0
+"Vanilla Sky","Fantasy, Mystery, Romance",166,41.566265060241,0
+"Verdict, The","Drama",26,96.1538461538462,1
+"Vertigo","Mystery, Romance, Thriller",63,96.8253968253968,1
+"Very Bad Things","Comedy, Crime, Thriller",52,44.2307692307692,0
+"Village, The","Drama, Mystery, Romance",207,43.4782608695652,0
+"Virtuosity","Action, Crime, Sci-Fi",30,33.3333333333333,0
+"Walking Tall","Action, Crime",135,25.9259259259259,0
+"Wall-E","Animation, Adventure, Family",244,96.3114754098361,1
+"What Lies Beneath","Drama, Fantasy, Horror",124,45.9677419354839,0
+"When a Stranger Calls","Horror, Thriller",91,8.79120879120879,0
+"While She Was Out","Crime, Drama, Thriller",16,31.25,0
+"Whiteout","Action, Crime, Mystery",111,7.20720720720721,0
+"Who Framed Roger Rabbit?","Animation, Comedy, Crime",62,96.7741935483871,1
+"Wild Bunch, The","Action, Adventure, Western",49,97.9591836734694,1
+"Wild Hogs","Action, Adventure, Comedy",140,14.2857142857143,0
+"Wild Wild West","Action, Western, Comedy",130,16.9230769230769,0
+"Willow","Action, Adventure, Drama",29,48.2758620689655,0
+"Win Win","Comedy, Drama, Sport",170,94.1176470588235,1
+"Wind Chill","Drama, Horror, Thriller",25,48,0
+"Witness","Crime, Drama, Romance",36,91.6666666666667,1
+"Wizard of Oz, The","Adventure, Family, Fantasy",109,99.0825688073395,1
+"Wrestler, The","Drama, Sport",219,98.1735159817352,1
+"X-Men Origins: Wolverine","Action, Adventure, Sci-Fi",252,37.6984126984127,0
+"xXx","Action, Adventure",178,48.314606741573,0
+"Year One","Adventure, Comedy",167,14.9700598802395,0
+"Yes Man","Comedy, Romance",151,45.6953642384106,0
+"You Can Count On Me","Drama",101,95.049504950495,1
+"Zero Dark Thirty","Drama, History, Thriller",262,92.3664122137405,1
+"Zerophilia","Comedy, Romance",20,25,0
