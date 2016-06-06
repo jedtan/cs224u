@@ -49,9 +49,11 @@ def find_lex_d(text):
             print(content)                    # print error message if error
         else:
         	if content == "EMPTY STRING":
-        		return 0
+        		return {'lexical_diversity': 0}
         	if content == "TOO SHORT":
-        		return 90
+        		return {'lexical_diversity': 90}
+        	if "USED TOO FREQUENTLY" in content:
+        		return {'lexical_diversity': 0}
         	return {'lexical_diversity': float(content)}  # print Lexical diversity score
     else:
         print('Error 200 thrown from server')
@@ -150,6 +152,16 @@ def get_dialogue_type_features(chunk):
 	#print proportion_os
 	return {'proportion_vo': proportion_vo, 'proportion_os': proportion_os}
 
+def convert(items, id):
+    new_dict = items.copy()
+    for key, value in items.items():
+        if key in id:
+            new_key = id[key]
+            new_dict[new_key] = items[key] # Copy the value
+            del new_dict[key]
+    return new_dict
+
+
 def extract_features(chunk, nth_chunk):
 	if chunk is None:
 		return None
@@ -161,7 +173,8 @@ def extract_features(chunk, nth_chunk):
 	if len(all_dialogue) == 0 or len(all_action) == 0:
 		return []
 	dialogue_features = extract_features_sub(all_dialogue.lower())
-	action_features = extract_features_sub(all_action.lower())
+	#print dialogue_features
+	action_features = extract_features_sub(all_action.lower(), dialogue = False)
 	chunk_summary_features = dialogue_action_length_features(dialogue_list, action_list)
 	dialogue_type_features = get_dialogue_type_features(chunk)
 	final_features = {}
@@ -169,20 +182,28 @@ def extract_features(chunk, nth_chunk):
 	final_features.update(action_features)
 	final_features.update(chunk_summary_features)
 	final_features.update(dialogue_type_features)
+	curr_keys = [feature for feature in final_features]
+	new_keys = [feature + "_" + str(nth_chunk) for feature in final_features]
+	#print new_keys
+	"""
 	for feature in final_features:
-		final_features[feature + str(nth_chunk)] = final_features.pop(feature)
-	return final_features
+		final_features[feature + "_" + str(nth_chunk)] = final_features.pop(feature)
+	"""
+	return convert(final_features, dict(zip(curr_keys, new_keys)))
 	#return dialogue_features + action_features +  chunk_summary_features + dialogue_type_features
 	#genre_features = [1 if x in genre_dict[movie_name] else 0 for x in all_genres]
 
 
 
 # change input to scenes
-def extract_features_sub(text):
+def extract_features_sub(text, dialogue = True):
 	## aggregate all dialogue, action
 	#scenes = format_script(file_name)
 	if len(text) > 0:
-		language_complexity = {'flesch_reading_ease': textstat.flesch_reading_ease(text), 'flesch_kincaid_grade': textstat.flesch_kincaid_grade(text), 'automated_readability_index': textstat.automated_readability_index(text)}
+		try:
+			language_complexity = {'flesch_reading_ease': textstat.flesch_reading_ease(text), 'flesch_kincaid_grade': textstat.flesch_kincaid_grade(text), 'automated_readability_index': textstat.automated_readability_index(text)}
+		except:
+			language_complexity = {'flesch_reading_ease': None, 'flesch_kincaid_grade': None, 'automated_readability_index': None}
 	else:
 		#badD.write(movie_name + "\n")
 		language_complexity = {'flesch_reading_ease': 0, 'flesch_kincaid_grade': 0, 'automated_readability_index': 0}
@@ -195,8 +216,22 @@ def extract_features_sub(text):
 	final_features.update(lexical_diversity)
 	final_features.update(sentiment)
 	final_features.update(inquirer_features)
+	curr_keys = [feature for feature in final_features]
+	if dialogue:
+		new_keys = [feature + "_" + "dialogue" for feature in final_features]
+	else:
+		new_keys = [feature + "_" + "action" for feature in final_features]
+	#print final_features
+	"""
+	if dialogue: 
+		for feature in final_features:
+			final_features[feature + "_dialogue"] = final_features.pop(feature)
+	else:
+		for feature in final_features:
+			final_features[feature + "_action"] = final_features.pop(feature)		
 	#final_features = language_complexity + lexical_diversity + sentiment + inquirer_features
-	return final_features
+	"""
+	return convert(final_features, dict(zip(curr_keys, new_keys)))
 
 # for each group of features, we return a tup
 #extract_features("Revenant, The")

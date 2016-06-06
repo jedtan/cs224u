@@ -8,8 +8,8 @@ names(imsdb_ratings) <- c('name', 'genre', 'imdb_rating', 'metascore', 'tomato_r
 imsdb_ratings$tomato_meter <- 100*imsdb_ratings$tomato_fresh/(imsdb_ratings$tomato_fresh + imsdb_ratings$tomato_rotten)
 qplot(imsdb_ratings$V4, geom = "histogram")
 
-ggplot(imsdb_ratings, aes(x=tomato_meter)) + geom_density()
-
+p = ggplot(imsdb_ratings, aes(x=tomato_meter)) + geom_density()
+ggsave("tomatometers_distribution.png", p)
 # data set right-skewed. less strict threshold requirement for lower bound, stricter threshold requirement of upper bound
 
 sum(imsdb_ratings$tomato_meter <= 50, na.rm = TRUE)
@@ -29,7 +29,7 @@ final_df <- df[complete.cases(df),]
 
 write.csv(final_df, "/Users/tdliu/Documents/cs224u/project/cs224u/imsdb_ratings_processed.csv", row.names = FALSE, col.names= FALSE)
 
-
+summary(final_df$tomato_reviews)
 
 
 

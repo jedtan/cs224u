@@ -79,6 +79,7 @@ def script_to_n_chunks(scenes, num_segments = 4):
 	return chunks
 
 # Process data and build features. Scale features is next step
+"""
 def get_status(row):
 	#3 metascored
 	#4 rottentomatoes
@@ -96,6 +97,7 @@ def get_status(row):
 			return "Bad"
 		else:
 			return "Neutral"
+"""
 
 def get_genre_dict():
 	genre_dict = {}
@@ -157,12 +159,22 @@ def build_features(scale_features = False):
 				print "No file or formatting error"
 				continue
 			print "Num scenes: " + str(len(scenes))
+			if len(scenes) < 5:
+				print "Skipping..."
+				continue
 			# Segment level features
 			chunks = script_to_n_chunks(scenes)
 			features = {}
 			for idx, chunk in enumerate(chunks):
 			# change input parameter to scenes for extract features
-				chunk_features = extract_features(chunk, idx + 1)
+				try:
+					chunk_features = extract_features(chunk, idx + 1)
+				except:
+					try:
+						chunk_features = extract_features(chunk, idx + 1)
+					except:
+						print "Failed to extract features"
+						continue
 				features.update(chunk_features)
 			# Full script features
 			script_summary_features = get_summary_features(scenes, row[0])
@@ -176,6 +188,23 @@ def build_features(scale_features = False):
 			#qual_list.append(0)
 			film_list.append(row[0])
 	return film_list, feat_list, qual_list
+
+import csv
+def write_features(film_list, feat_list, qual_list, file_name = 'processed_screenplay_data_test.tsv'):
+	v = DictVectorizer(sparse=False)
+	X = v.fit_transform(feat_list)
+	feat_names = v.get_feature_names()
+	with open(file_name, 'w') as csvfile:
+		csvwriter = csv.writer(csvfile, delimiter = '\t')
+		header = ['name', 'screenplay_quality']
+		header.extend(feat_names)
+		csvwriter.writerow(header)
+		for idx, row in enumerate(X):
+			write_row = [film_list[idx], qual_list[idx]]
+			write_row.extend(row)
+			csvwriter.writerow(write_row)
+
+
 
 #chunks = script_to_n_chunks(scenes)
 #features = []
